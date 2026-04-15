@@ -152,7 +152,7 @@ export default function ReportEmergency() {
                   <div className="p-4 bg-slate-50 rounded-full mb-3 group-hover:bg-emerald-50 transition-colors">
                     <Camera size={32} className="group-hover:text-emerald-500" />
                   </div>
-                  <span className="font-bold">Add a Photos (Optional)</span>
+                  <span className="font-bold">Add Photos (Optional)</span>
                   <span className="text-[10px] uppercase tracking-wider mt-1">Tap to capture</span>
                 </div>
 

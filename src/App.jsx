@@ -9,7 +9,6 @@ import CommanderCenter from './pages/CommanderCenter'
 import IncidentResponseView from './pages/IncidentResponseView'
 import Login from './pages/Login'
 import ProtectedRoute from './components/ProtectedRoute'
-import { AnimatePresence } from 'framer-motion'
 
 const INITIAL_INCIDENTS = [
   { id: 'INC-701', type: 'Structural Fire', lat: 26.1445, lng: 91.7362, status: 'detected', severity: 'high' },

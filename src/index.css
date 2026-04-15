@@ -1,20 +1,5 @@
 @import "tailwindcss";
 
-<<<<<<< HEAD
-@layer base {
-  body {
-    @apply bg-slate-50 text-slate-900;
-  }
-}
-
-@theme {
-  --color-primary: #1e293b;
-  --color-accent: #10b981;
-  --color-danger: #f43f5e;
-}
-
-/* Custom Scrollbar */
-=======
 @theme {
   --color-brand-bg: #0b1121;
   --color-brand-card: #151e33;
@@ -24,6 +9,10 @@
   
   --font-mono: "JetBrains Mono", "Fira Code", monospace;
   --font-sans: "Inter", "Outfit", system-ui, sans-serif;
+  
+  --color-primary: #1e293b;
+  --color-accent: #10b981;
+  --color-danger: #f43f5e;
 }
 
 @layer base {
@@ -40,9 +29,13 @@
   .tactical-border {
     @apply border border-slate-800 focus-within:border-brand-primary/50 transition-colors duration-300;
   }
+  
+  .sos-glow {
+    box-shadow: 0 0 15px rgba(244, 63, 94, 0.6);
+    animation: pulse-red 2s infinite;
+  }
 }
 
-/* Animations */
 @keyframes pulse-soft {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.7; }
@@ -50,28 +43,6 @@
 
 .animate-pulse-soft {
   animation: pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-/* Custom Scrollbar for Tactical feel */
->>>>>>> origin/main
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-<<<<<<< HEAD
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 10px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
-}
-
-.sos-glow {
-  box-shadow: 0 0 15px rgba(244, 63, 94, 0.6);
-  animation: pulse-red 2s infinite;
 }
 
 @keyframes pulse-red {
@@ -89,7 +60,13 @@
 .dark .glass {
   background: rgba(15, 23, 42, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.1);
-=======
+}
+
+/* Custom Scrollbar for Tactical feel */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
   background: #0b1121;
 }
 ::-webkit-scrollbar-thumb {
@@ -98,5 +75,4 @@
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #334155;
->>>>>>> origin/main
 }
