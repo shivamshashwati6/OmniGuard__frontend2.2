@@ -17,15 +17,24 @@ export default function Login({ onLogin }) {
     setTimeout(() => {
       let role = '';
       
-      // Role detection based on email and access code mapping
-      if (email === 'coordinator@omniguard.io' && accessCode === 'omni2024!') {
+      // Role detection based on email domain or specific email
+      if (email === 'coordinator@omniguard.io') {
         role = 'coordinator';
-      } else if (email === 'responder1@omniguard.io' && accessCode === 'resp2024!') {
+      } else if (email === 'responder@omniguard.io') {
         role = 'responder';
-      } else if (email === 'civilian@omniguard.io' && accessCode === 'civ2024!') {
+      } else if (email === 'civilian@omniguard.io') {
+        role = 'civilian';
+      } else if (email.includes('@omniguard.io')) {
         role = 'civilian';
       } else {
-        setError('Invalid credentials or unauthorized access code.');
+        setError('Unauthorized domain. Please use your @omniguard.io credentials.');
+        setIsLoading(false);
+        return;
+      }
+
+      // Basic access code validation
+      if (accessCode.length < 4) {
+        setError('Invalid Access Code. Minimum 4 digits required.');
         setIsLoading(false);
         return;
       }
@@ -33,7 +42,7 @@ export default function Login({ onLogin }) {
       const userData = {
         email,
         role,
-        name: email.split('@')[0].toUpperCase(),
+        name: email.split('@')[0].charAt(0).toUpperCase() + email.split('@')[0].slice(1),
         isAuthenticated: true
       };
 

@@ -57,15 +57,6 @@ export default function Dashboard({ incidents, onUpdateStatus }) {
         ))}
       </div>
 
-      {/* Tactical Map Section */}
-      <section className="space-y-4">
-        <div className="flex items-center justify-between px-2">
-          <h3 className="text-xs font-bold text-slate-900 uppercase tracking-[0.2em]">Live Tactical Deployment</h3>
-          <span className="text-[10px] text-slate-500 font-mono uppercase">Zone: Assam_Guwahati_01</span>
-        </div>
-        <TacticalMap incidents={incidents} />
-      </section>
-
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Incident Feed */}
         <div className="lg:col-span-2 bg-white border border-slate-200 rounded-2xl overflow-hidden self-start shadow-sm">
