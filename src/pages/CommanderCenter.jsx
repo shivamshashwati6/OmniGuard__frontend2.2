@@ -16,11 +16,11 @@ const accessCodes = [
   { id: 'OP-301', operator: 'K. Datta', code: '••••-••••', level: 2, status: 'Revoked' },
 ]
 
-export default function CommanderCenter() {
+export default function CommanderCenter({ user }) {
   const [lockdownOpen, setLockdownOpen] = useState(false)
   const [isLocked, setIsLocked] = useState(false)
   const [terminalLog, setTerminalLog] = useState([
-    '> AUTHENTICATED: coordinator@omniguard.io',
+    `> AUTHENTICATED: ${user?.email || 'coordinator@omniguard.io'}`,
     '> ENCRYPTION: AES-256 ACTIVE',
     '> SYSTEM READY'
   ])
@@ -46,7 +46,7 @@ export default function CommanderCenter() {
             <h2 className="text-xl font-bold tracking-widest uppercase">Commander Control Center</h2>
             <div className="flex items-center gap-2 text-xs opacity-60">
               <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
-              <span>CONNECTED AS: COORDINATOR@OMNIGUARD.IO</span>
+              <span>CONNECTED AS: {(user?.email || 'COORDINATOR@OMNIGUARD.IO').toUpperCase()}</span>
               <span className="ml-2 border-l border-emerald-500/20 pl-2">UPTIME: 142:09:44</span>
             </div>
           </div>

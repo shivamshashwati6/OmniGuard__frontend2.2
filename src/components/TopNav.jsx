@@ -1,7 +1,7 @@
 import React from 'react'
 import { Bell, Search, User, Zap } from 'lucide-react'
 
-export default function TopNav() {
+export default function TopNav({ user }) {
   return (
     <header className="h-20 bg-white border-b border-slate-200 px-8 flex items-center justify-between sticky top-0 z-10 glass">
       <div className="flex items-center flex-1 max-w-2xl gap-8">
@@ -37,8 +37,8 @@ export default function TopNav() {
           
           <div className="flex items-center gap-3 cursor-pointer group">
             <div className="text-right hidden sm:block">
-              <p className="text-sm font-bold text-slate-900 leading-none">Coordinator Mode</p>
-              <p className="text-[10px] text-emerald-500 font-mono">coordinator@omniguard.io</p>
+              <p className="text-sm font-bold text-slate-900 leading-none">{user?.name || 'Guest User'}</p>
+              <p className="text-[10px] text-emerald-500 font-mono">{user?.email || 'unauthenticated'}</p>
             </div>
             <div className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center border-2 border-slate-200 group-hover:border-emerald-500 transition-colors overflow-hidden">
               <User size={24} className="text-slate-400" />
