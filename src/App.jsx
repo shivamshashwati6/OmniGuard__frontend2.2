@@ -86,11 +86,27 @@ function App() {
                   <IncidentResponseView />
                 </ProtectedRoute>
               } />
+              
+              {/* Shared Map Route */}
+              <Route path="/maps" element={
+                <ProtectedRoute user={user} allowedRoles={['responder', 'coordinator']}>
+                  {user.role === 'coordinator' ? <Dashboard incidents={incidents} onUpdateStatus={updateIncidentStatus} /> : <IncidentResponseView />}
+                </ProtectedRoute>
+              } />
 
               {/* Civilian Routes */}
               <Route path="/sos" element={
                 <ProtectedRoute user={user} allowedRoles={['civilian', 'coordinator']}>
                   <ReportEmergency />
+                </ProtectedRoute>
+              } />
+              <Route path="/status" element={
+                <ProtectedRoute user={user} allowedRoles={['civilian']}>
+                  <div className="flex flex-col items-center justify-center h-full text-slate-400">
+                    <Activity size={48} className="mb-4 opacity-20" />
+                    <h3 className="text-xl font-bold text-slate-900">Current Incident Status</h3>
+                    <p className="italic">No active reports found for your ID.</p>
+                  </div>
                 </ProtectedRoute>
               } />
 
@@ -115,18 +131,7 @@ function App() {
               } />
               
               <Route path="*" element={
-                <div className="flex flex-col items-center justify-center h-full text-slate-400">
-                  <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mb-4">
-                    <span className="text-2xl">🚧</span>
-                  </div>
-                  <p className="italic">This module is currently being deployed...</p>
-                  <button 
-                    onClick={() => window.location.href = '/'}
-                    className="mt-4 text-emerald-600 font-bold hover:underline"
-                  >
-                    Return Home
-                  </button>
-                </div>
+                <Navigate to="/" replace />
               } />
             </Routes>
           </main>
