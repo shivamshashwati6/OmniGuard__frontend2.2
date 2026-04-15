@@ -9,7 +9,7 @@ const incidentTypes = [
   { id: 'natural', label: 'Natural Disaster', icon: Tent, color: 'bg-amber-100 text-amber-600 border-amber-200' },
 ]
 
-export default function ReportEmergency() {
+export default function ReportEmergency({ onSuccess }) {
   const [step, setStep] = useState(1)
   const [formData, setFormData] = useState({
     type: '',
@@ -21,8 +21,17 @@ export default function ReportEmergency() {
   const totalSteps = 3
   const progress = (step / totalSteps) * 100
 
-  const handleNext = () => setStep(s => Math.min(s + 1, totalSteps))
+  const handleNext = () => setStep(s => Math.min(s + 1, totalSteps + 1))
   const handleBack = () => setStep(s => Math.max(s - 1, 1))
+
+  React.useEffect(() => {
+    if (step === 4 && onSuccess) {
+      const timer = setTimeout(() => {
+        onSuccess();
+      }, 3000); // Redirect after 3 seconds so they can see the confirmation
+      return () => clearTimeout(timer);
+    }
+  }, [step, onSuccess]);
 
   return (
     <div className="max-w-2xl mx-auto flex flex-col h-full bg-slate-50 md:p-4">

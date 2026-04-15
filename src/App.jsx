@@ -4,14 +4,14 @@ import Sidebar from './components/Sidebar'
 import TopNav from './components/TopNav'
 import Login from './pages/Login'
 import ProtectedRoute from './components/ProtectedRoute'
-import CivilianDashboard from './pages/CivilianDashboard'
-import ResponderDashboard from './pages/ResponderDashboard'
+import CivilianSOS from './pages/CivilianSOS'
+import CivilianStatus from './pages/CivilianStatus'
+import ResponderIncidents from './pages/ResponderIncidents'
+import ResponderNavigation from './pages/ResponderNavigation'
 import CoordinatorDashboard from './pages/CoordinatorDashboard'
 import ActiveThreats from './pages/ActiveThreats'
 import CommanderCenter from './pages/CommanderCenter'
 import MapView from './pages/MapView'
-import ResponderIncidents from './pages/ResponderIncidents'
-import ResponderNavigation from './pages/ResponderNavigation'
 
 const INITIAL_INCIDENTS = [
   { id: 'INC-701', type: 'Structural Fire', lat: 26.1445, lng: 91.7362, status: 'detected', severity: 'high' },
@@ -87,7 +87,7 @@ function App() {
 
               {/* Role-Based Dashboard Root */}
               <Route path="/" element={
-                user.role === 'civilian' ? <CivilianDashboard /> :
+                user.role === 'civilian' ? <CivilianSOS /> :
                 user.role === 'responder' ? <ResponderIncidents /> :
                 <CoordinatorDashboard incidents={incidents} onUpdateStatus={updateIncidentStatus} />
               } />
@@ -95,12 +95,12 @@ function App() {
               {/* Explicit Routes with Protection */}
               <Route path="/sos" element={
                 <ProtectedRoute user={user} allowedRoles={['civilian']}>
-                  <CivilianDashboard />
+                  <CivilianSOS />
                 </ProtectedRoute>
               } />
               <Route path="/status" element={
                 <ProtectedRoute user={user} allowedRoles={['civilian']}>
-                  <CivilianDashboard />
+                  <CivilianStatus />
                 </ProtectedRoute>
               } />
               
