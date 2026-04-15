@@ -16,22 +16,25 @@ export default function Login({ onLogin }) {
     // Simulate validation delay
     setTimeout(() => {
       let role = '';
-      let isValid = false;
       
-      // Strict Email & Access Code Mapping
-      if (email === 'civilian@omniguard.io' && accessCode === 'civ2024!') {
-        role = 'civilian';
-        isValid = true;
-      } else if (email === 'responder@omniguard.io' && accessCode === 'resp2024!') {
-        role = 'responder';
-        isValid = true;
-      } else if (email === 'coordinator@omniguard.io' && accessCode === 'omni2024!') {
+      // Role detection based on email domain or specific email
+      if (email === 'coordinator@omniguard.io') {
         role = 'coordinator';
-        isValid = true;
+      } else if (email === 'responder@omniguard.io') {
+        role = 'responder';
+      } else if (email === 'civilian@omniguard.io') {
+        role = 'civilian';
+      } else if (email.includes('@omniguard.io')) {
+        role = 'civilian';
+      } else {
+        setError('Unauthorized domain. Please use your @omniguard.io credentials.');
+        setIsLoading(false);
+        return;
       }
 
-      if (!isValid) {
-        setError('Invalid credentials. Access Denied.');
+      // Basic access code validation
+      if (accessCode.length < 4) {
+        setError('Invalid Access Code. Minimum 4 digits required.');
         setIsLoading(false);
         return;
       }
