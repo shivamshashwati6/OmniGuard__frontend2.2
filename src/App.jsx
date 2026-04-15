@@ -10,6 +10,8 @@ import CoordinatorDashboard from './pages/CoordinatorDashboard'
 import ActiveThreats from './pages/ActiveThreats'
 import CommanderCenter from './pages/CommanderCenter'
 import MapView from './pages/MapView'
+import ResponderIncidents from './pages/ResponderIncidents'
+import ResponderNavigation from './pages/ResponderNavigation'
 
 const INITIAL_INCIDENTS = [
   { id: 'INC-701', type: 'Structural Fire', lat: 26.1445, lng: 91.7362, status: 'detected', severity: 'high' },
@@ -86,7 +88,7 @@ function App() {
               {/* Role-Based Dashboard Root */}
               <Route path="/" element={
                 user.role === 'civilian' ? <CivilianDashboard /> :
-                user.role === 'responder' ? <ResponderDashboard /> :
+                user.role === 'responder' ? <ResponderIncidents /> :
                 <CoordinatorDashboard incidents={incidents} onUpdateStatus={updateIncidentStatus} />
               } />
 
@@ -104,7 +106,7 @@ function App() {
               
               <Route path="/incidents" element={
                 <ProtectedRoute user={user} allowedRoles={['responder']}>
-                  <ResponderDashboard />
+                  <ResponderIncidents />
                 </ProtectedRoute>
               } />
 
@@ -116,7 +118,7 @@ function App() {
               
               <Route path="/maps" element={
                 <ProtectedRoute user={user} allowedRoles={['coordinator', 'responder']}>
-                  <MapView incidents={incidents} />
+                  {user.role === 'coordinator' ? <MapView incidents={incidents} /> : <ResponderNavigation />}
                 </ProtectedRoute>
               } />
 
@@ -140,5 +142,7 @@ function App() {
     </BrowserRouter>
   )
 }
+
+// Update the root redirect logic if needed (it's inside the "/" route)
 
 export default App
