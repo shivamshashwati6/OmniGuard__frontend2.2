@@ -12,6 +12,7 @@ import CoordinatorDashboard from './pages/CoordinatorDashboard'
 import ActiveThreats from './pages/ActiveThreats'
 import CommanderCenter from './pages/CommanderCenter'
 import MapView from './pages/MapView'
+import TacticalDashboard from './pages/TacticalDashboard'
 
 const INITIAL_INCIDENTS = [
   { id: 'INC-701', type: 'Structural Fire', lat: 26.1445, lng: 91.7362, status: 'detected', severity: 'high' },
@@ -60,17 +61,21 @@ function App() {
     )
   }
 
+  const isTactical = user && user.role === 'coordinator';
+
   return (
     <BrowserRouter>
-      <div className="flex h-screen bg-slate-50 text-slate-900 overflow-hidden font-sans">
-        <Sidebar user={user} onLogout={handleLogout} />
+      <div className={`flex h-screen ${isTactical ? 'bg-brand-obsidian' : 'bg-slate-50'} text-slate-900 overflow-hidden font-sans`}>
+        {!isTactical && <Sidebar user={user} onLogout={handleLogout} />}
         
         <div className="flex-1 flex flex-col min-w-0 relative h-full">
-          <div className="absolute inset-0 pointer-events-none z-50 opacity-[0.01] bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[length:100%_4px,3px_100%]" />
+          {!isTactical && (
+            <div className="absolute inset-0 pointer-events-none z-50 opacity-[0.01] bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[length:100%_4px,3px_100%]" />
+          )}
           
-          <TopNav user={user} />
+          {!isTactical && <TopNav user={user} />}
           
-          <main className="flex-1 overflow-y-auto p-6 md:p-8">
+          <main className={`flex-1 overflow-y-auto ${isTactical ? 'p-0' : 'p-6 md:p-8'}`}>
             <Routes>
               {/* Universal Profile Route */}
               <Route path="/profile" element={
@@ -89,7 +94,7 @@ function App() {
               <Route path="/" element={
                 user.role === 'civilian' ? <CivilianSOS /> :
                 user.role === 'responder' ? <ResponderIncidents /> :
-                <CoordinatorDashboard incidents={incidents} onUpdateStatus={updateIncidentStatus} />
+                <TacticalDashboard incidents={incidents} onUpdateStatus={updateIncidentStatus} />
               } />
 
               {/* Explicit Routes with Protection */}
@@ -112,7 +117,7 @@ function App() {
 
               <Route path="/dashboard" element={
                 <ProtectedRoute user={user} allowedRoles={['coordinator']}>
-                  <CoordinatorDashboard incidents={incidents} onUpdateStatus={updateIncidentStatus} />
+                  <TacticalDashboard incidents={incidents} onUpdateStatus={updateIncidentStatus} />
                 </ProtectedRoute>
               } />
               
