@@ -12,6 +12,7 @@ import CoordinatorDashboard from './pages/CoordinatorDashboard'
 import ActiveThreats from './pages/ActiveThreats'
 import CommanderCenter from './pages/CommanderCenter'
 import MapView from './pages/MapView'
+import TacticalDashboard from './pages/TacticalDashboard'
 
 const INITIAL_INCIDENTS = [
   { id: 'INC-701', type: 'Structural Fire', lat: 26.1445, lng: 91.7362, status: 'detected', severity: 'high' },
@@ -133,6 +134,8 @@ function App() {
                 </ProtectedRoute>
               } />
 
+              <Route path="/tactical" element={<TacticalDashboard />} />
+              
               {/* Redirect any other match to root */}
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
