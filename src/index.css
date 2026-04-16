@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-bg: #050811;
-  --color-brand-card: #0d121f;
+  --color-brand-bg-start: #050a15;
+  --color-brand-bg-end: #02040a;
+  --color-brand-card: rgba(13, 18, 31, 0.4);
   --color-brand-primary: #3b82f6;
   --color-brand-accent: #10b981;
   --color-brand-danger: #ef4444;
@@ -15,25 +16,42 @@
 
 @layer base {
   body {
-    @apply bg-brand-bg text-slate-300 font-sans antialiased overflow-hidden selection:bg-brand-primary/30 selection:text-white;
+    @apply text-slate-300 font-sans antialiased overflow-hidden selection:bg-brand-primary/30 selection:text-white;
+    background: radial-gradient(circle at 50% 50%, var(--color-brand-bg-start) 0%, var(--color-brand-bg-end) 100%);
+    min-height: 100vh;
   }
 }
 
 @layer components {
+  .volumetric-bg {
+    background: 
+      radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.05) 0%, transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(6, 182, 212, 0.05) 0%, transparent 40%),
+      linear-gradient(180deg, #050a15 0%, #02040a 100%);
+  }
+
+  .glass-panel {
+    @apply backdrop-blur-[16px] bg-white/[0.03] border border-white/[0.05] rounded-xl shadow-[0_8px_32px_0_rgba(0,0,0,0.37)];
+  }
+
+  .glass-panel-heavy {
+    @apply backdrop-blur-[24px] bg-black/20 border border-white/10 rounded-xl shadow-2xl;
+  }
+
   .tactical-glow {
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.15);
-  }
-  
-  .tactical-border {
-    @apply border border-slate-800 focus-within:border-brand-primary/50 transition-colors duration-300;
-  }
-  
-  .glass-tactical {
-    @apply bg-brand-card/60 backdrop-blur-md border border-white/5;
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.2);
   }
 
   .cyber-button {
-    @apply relative px-4 py-2 bg-brand-primary/10 border border-brand-primary/30 text-brand-primary hover:bg-brand-primary/20 hover:border-brand-primary/60 transition-all duration-300 text-sm font-mono uppercase tracking-widest overflow-hidden;
+    @apply relative px-4 py-2 bg-white/5 border border-white/10 text-slate-300 hover:bg-brand-primary/10 hover:border-brand-primary/40 hover:text-brand-primary transition-all duration-300 text-sm font-mono uppercase tracking-widest overflow-hidden rounded-md;
+  }
+
+  .cyan-glow-text {
+    text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+  }
+
+  .amber-glow-text {
+    text-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
   }
 }
 
@@ -47,35 +65,34 @@
   50% { opacity: 0; }
 }
 
-@keyframes pulse-cyan {
-  0% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.4); }
-  70% { box-shadow: 0 0 0 10px rgba(6, 182, 212, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0); }
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
 .animate-scan {
-  animation: scan 4s linear infinite;
+  animation: scan 6s linear infinite;
 }
 
 .animate-blink {
-  animation: blink 1s step-end infinite;
+  animation: blink 1.5s step-end infinite;
 }
 
-.animate-pulse-cyan {
-  animation: pulse-cyan 2s infinite;
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
 
-/* Custom Scrollbar for Tactical feel */
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 3px;
 }
 ::-webkit-scrollbar-track {
-  background: #050811;
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
-  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3b82f6;
+  background: var(--color-brand-cyan);
 }
