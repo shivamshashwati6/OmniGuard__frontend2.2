@@ -1,89 +1,57 @@
 @import "tailwindcss";
 
 @theme {
-  --color-obsidian: #050505;
-  --color-tactical-cyan: #00f3ff;
-  --color-tactical-amber: #ffaa00;
-  --color-tactical-crimson: #ff003c;
-  --color-tactical-glass: rgba(10, 10, 18, 0.75);
+  --color-brand-bg-start: #050a15;
+  --color-brand-bg-end: #02040a;
+  --color-brand-card: rgba(13, 18, 31, 0.4);
+  --color-brand-primary: #3b82f6;
+  --color-brand-accent: #10b981;
+  --color-brand-danger: #ef4444;
+  --color-brand-warning: #f59e0b;
+  --color-brand-cyan: #06b6d4;
   
-  --font-mono: "JetBrains Mono", "Fira Code", "Space Mono", monospace;
-  --font-sans: "Inter", "Outfit", "Space Grotesk", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", monospace;
+  --font-sans: "Inter", "Outfit", system-ui, sans-serif;
 }
 
 @layer base {
-  :root {
-    color-scheme: dark;
-  }
-  
   body {
-    @apply bg-obsidian text-slate-300 font-sans antialiased selection:bg-tactical-cyan/30 selection:text-white leading-tight;
-    background-image: 
-      linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
-    height: 100vh;
-    overflow: hidden;
-  }
-
-  /* Scanline Effect Overlay */
-  body::before {
-    content: " ";
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
-                linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
-    background-size: 100% 4px, 3px 100%;
-    z-index: 100;
-    pointer-events: none;
-    opacity: 0.3;
+    @apply text-slate-300 font-sans antialiased overflow-hidden selection:bg-brand-primary/30 selection:text-white;
+    background: radial-gradient(circle at 50% 50%, var(--color-brand-bg-start) 0%, var(--color-brand-bg-end) 100%);
+    min-height: 100vh;
   }
 }
 
 @layer components {
-  .tactical-panel {
-    @apply relative bg-tactical-glass backdrop-blur-xl transition-all duration-300;
-    clip-path: polygon(
-      0px 12px, 12px 0px, 
-      calc(100% - 12px) 0px, 100% 12px, 
-      100% calc(100% - 12px), calc(100% - 12px) 100%, 
-      12px 100%, 0px calc(100% - 12px)
-    );
-    border: 1px solid rgba(0, 243, 255, 0.15);
-    box-shadow: inset 0 0 20px rgba(0, 243, 255, 0.05);
+  .volumetric-bg {
+    background: 
+      radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.05) 0%, transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(6, 182, 212, 0.05) 0%, transparent 40%),
+      linear-gradient(180deg, #050a15 0%, #02040a 100%);
   }
 
-  /* Thin highlight line on top of panels */
-  .tactical-panel::after {
-    content: "";
-    @apply absolute top-0 left-[15px] right-[15px] h-[1px] bg-gradient-to-r from-transparent via-tactical-cyan/40 to-transparent;
-    pointer-events: none;
+  .glass-panel {
+    @apply backdrop-blur-[16px] bg-white/[0.03] border border-white/[0.05] rounded-xl shadow-[0_8px_32px_0_rgba(0,0,0,0.37)];
   }
 
-  .glow-cyan {
-    filter: drop-shadow(0 0 8px rgba(0, 243, 255, 0.6));
-  }
-  
-  .glow-amber {
-    filter: drop-shadow(0 0 5px rgba(255, 170, 0, 0.4));
-  }
-  
-  .glow-crimson {
-    filter: drop-shadow(0 0 5px rgba(255, 0, 60, 0.4));
+  .glass-panel-heavy {
+    @apply backdrop-blur-[24px] bg-black/20 border border-white/10 rounded-xl shadow-2xl;
   }
 
-  .mono {
-    @apply font-mono tracking-tighter uppercase text-xs;
+  .tactical-glow {
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.2);
   }
 
-  .bento-grid {
-    @apply grid gap-1 p-1 h-screen w-full box-border;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(12, 1fr);
+  .cyber-button {
+    @apply relative px-4 py-2 bg-white/5 border border-white/10 text-slate-300 hover:bg-brand-primary/10 hover:border-brand-primary/40 hover:text-brand-primary transition-all duration-300 text-sm font-mono uppercase tracking-widest overflow-hidden rounded-md;
+  }
+
+  .cyan-glow-text {
+    text-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+  }
+
+  .amber-glow-text {
+    text-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
   }
 }
 
@@ -92,21 +60,39 @@
   to { transform: translateY(100%); }
 }
 
-.scan-line {
-  @apply absolute w-full h-[2px] bg-tactical-cyan/10 opacity-50 z-10;
-  animation: scan 8s linear infinite;
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-scan {
+  animation: scan 6s linear infinite;
+}
+
+.animate-blink {
+  animation: blink 1.5s step-end infinite;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 3px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(0, 243, 255, 0.2);
-  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 243, 255, 0.4);
+  background: var(--color-brand-cyan);
 }
