@@ -1,9 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Sidebar from './components/Sidebar'
 import TopNav from './components/TopNav'
 import Login from './pages/Login'
 import ProtectedRoute from './components/ProtectedRoute'
+import { clsx } from 'clsx'
+import { twMerge } from 'tailwind-merge'
+
+function cn(...inputs) {
+  return twMerge(clsx(inputs))
+}
 import CivilianSOS from './pages/CivilianSOS'
 import CivilianStatus from './pages/CivilianStatus'
 import ResponderIncidents from './pages/ResponderIncidents'
@@ -26,6 +32,19 @@ function App() {
     return saved ? JSON.parse(saved) : null;
   })
   const [incidents, setIncidents] = useState(INITIAL_INCIDENTS)
+  const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 1024)
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 1024) {
+        setIsSidebarOpen(false)
+      } else {
+        setIsSidebarOpen(true)
+      }
+    }
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   const handleLogin = (userData) => {
     setUser(userData)
@@ -63,15 +82,27 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="flex h-screen bg-slate-50 text-slate-900 overflow-hidden font-sans">
-        <Sidebar user={user} onLogout={handleLogout} />
+      <div className="flex h-screen bg-slate-50 text-slate-900 overflow-hidden font-sans relative">
+        <Sidebar 
+          user={user} 
+          onLogout={handleLogout} 
+          isOpen={isSidebarOpen} 
+          setIsOpen={setIsSidebarOpen} 
+        />
         
-        <div className="flex-1 flex flex-col min-w-0 relative h-full">
+        <div className={cn(
+          "flex-1 flex flex-col min-w-0 relative h-full transition-all duration-300",
+          isSidebarOpen ? "lg:ml-64" : "lg:ml-20"
+        )}>
           <div className="absolute inset-0 pointer-events-none z-50 opacity-[0.01] bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[length:100%_4px,3px_100%]" />
           
-          <TopNav user={user} />
+          <TopNav 
+            user={user} 
+            isSidebarOpen={isSidebarOpen} 
+            toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} 
+          />
           
-          <main className="flex-1 overflow-y-auto p-6 md:p-8">
+          <main className="flex-1 overflow-y-auto p-4 md:p-8">
             <Routes>
               {/* Universal Profile Route */}
               <Route path="/profile" element={
