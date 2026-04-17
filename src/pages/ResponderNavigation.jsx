@@ -32,18 +32,18 @@ export default function ResponderNavigation() {
           </div>
 
           {/* Map Overlay HUD */}
-          <div className="absolute top-6 left-6 right-6 z-10">
-             <div className="bg-white/95 backdrop-blur-md p-6 rounded-3xl shadow-2xl border border-white/50 flex items-center justify-between">
+          <div className="absolute top-6 left-[72px] z-10 w-full max-w-md">
+             <div className="bg-white/95 backdrop-blur-md p-6 rounded-3xl shadow-2xl border border-white/50 flex items-center justify-between gap-6">
                 <div className="flex items-center gap-5">
-                   <div className="bg-emerald-500 p-4 rounded-2xl text-white shadow-xl shadow-emerald-500/40">
+                   <div className="bg-emerald-500 p-4 rounded-2xl text-white shadow-xl shadow-emerald-500/40 shrink-0">
                       <Navigation size={28} />
                    </div>
-                   <div>
+                   <div className="min-w-0">
                       <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Routing Instruction</p>
-                      <p className="font-black text-slate-900 text-lg">350m - Turn Right at Beltola Chowk</p>
+                      <p className="font-black text-slate-900 text-lg truncate">350m - Turn Right at Beltola Chowk</p>
                    </div>
                 </div>
-                <div className="text-right border-l border-slate-100 pl-8">
+                <div className="text-right border-l border-slate-100 pl-8 shrink-0">
                    <p className="text-3xl font-black text-slate-900 leading-none">4 MIN</p>
                    <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mt-1">Est. Arrival</p>
                 </div>
