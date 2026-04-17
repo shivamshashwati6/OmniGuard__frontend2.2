@@ -6,7 +6,7 @@ export default function MapView({ incidents }) {
   return (
     <div className="flex flex-col h-full -m-6 md:-m-8"> {/* Negative margin to fill the container p-6/p-8 */}
       {/* Map Header Overlay */}
-      <div className="absolute top-12 left-12 z-10 flex flex-col gap-4 pointer-events-none">
+      <div className="absolute top-12 left-12 z-10 flex flex-col items-start gap-2 pointer-events-none">
         <div className="bg-white p-4 rounded-2xl shadow-xl border border-slate-200 flex items-center gap-4 pointer-events-auto transition-all hover:scale-105">
           <div className="bg-emerald-500 p-2 rounded-xl text-white shadow-lg shadow-emerald-500/30">
             <Shield size={24} />
@@ -31,7 +31,7 @@ export default function MapView({ incidents }) {
       </div>
 
       {/* Map Controls Overlay (Right) */}
-      <div className="absolute top-12 right-12 z-10 flex flex-col gap-3">
+      <div className="absolute top-40 right-12 z-10 flex flex-col gap-3">
         <button className="p-3 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl shadow-lg transition-all active:scale-95 group">
           <Layers size={20} className="text-slate-500 group-hover:text-emerald-500" />
         </button>
