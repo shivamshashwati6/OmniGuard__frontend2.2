@@ -254,25 +254,6 @@ const TacticalDashboard = () => {
   );
 };
 
-        {/* Circular Gauges */}
-        <div className="w-96 flex gap-6 px-2">
-          <CircularProgress value={78} label="CORE" color="text-brand-primary" />
-          <CircularProgress value={42} label="SYNC" color="text-brand-cyan" />
-          <CircularProgress value={92} label="DEFENSE" color="text-brand-danger" />
-        </div>
-
-        {/* Status Toggles Grid */}
-        <div className="grid grid-cols-2 gap-3 w-72">
-          <StatusToggle label="HVAC_CTRL" active />
-          <StatusToggle label="PRM_LINK" active />
-          <StatusToggle label="ENC_COMM" active />
-          <StatusToggle label="XTR_DRV" />
-        </div>
-      </footer>
-    </div>
-  );
-};
-
 const SidebarIcon = ({ icon, label, active = false }) => (
   <motion.button 
     whileHover={{ x: 5 }}
