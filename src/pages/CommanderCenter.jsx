@@ -32,22 +32,22 @@ export default function CommanderCenter({ user }) {
   }
 
   return (
-    <div className="bg-[#020617] text-emerald-500 min-h-full p-6 font-mono border border-emerald-500/20 rounded-2xl relative overflow-hidden">
+    <div className="glass-panel text-white min-h-full p-8 font-mono relative overflow-hidden rounded-[2rem] shadow-[0_0_50px_rgba(0,0,0,0.5)]">
       {/* Terminal Backdrop Pattern */}
-      <div className="absolute inset-0 opacity-5 pointer-events-none" style={{backgroundImage: 'repeating-linear-gradient(0deg, #10b981 0px, transparent 1px, transparent 3px)'}}></div>
+      <div className="absolute inset-0 opacity-5 pointer-events-none" style={{backgroundImage: 'repeating-linear-gradient(0deg, var(--color-brand-cyan) 0px, transparent 1px, transparent 3px)'}}></div>
       
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 border-b border-emerald-500/20 pb-6 relative z-10">
-        <div className="flex items-center gap-4">
-          <div className="w-12 h-12 bg-emerald-500/10 border border-emerald-500/40 rounded flex items-center justify-center">
-            <Terminal size={24} />
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10 border-b border-white/10 pb-8 relative z-10">
+        <div className="flex items-center gap-5">
+          <div className="w-14 h-14 bg-brand-cyan/10 border border-brand-cyan/30 rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(6,182,212,0.2)]">
+            <Terminal size={28} className="text-brand-cyan" />
           </div>
           <div>
-            <h2 className="text-xl font-bold tracking-widest uppercase">Commander Control Center</h2>
-            <div className="flex items-center gap-2 text-xs opacity-60">
-              <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+            <h2 className="text-2xl font-black tracking-[0.3em] uppercase cyan-glow-text">Commander Control</h2>
+            <div className="flex items-center gap-3 text-[10px] font-black tracking-widest text-slate-500 mt-1">
+              <div className="w-2 h-2 rounded-full bg-brand-cyan animate-pulse shadow-[0_0_8px_#06b6d4]"></div>
               <span>CONNECTED AS: {(user?.email || 'COORDINATOR@OMNIGUARD.IO').toUpperCase()}</span>
-              <span className="ml-2 border-l border-emerald-500/20 pl-2">UPTIME: 142:09:44</span>
+              <span className="ml-2 border-l border-white/10 pl-3">UPTIME: 142:09:44</span>
             </div>
           </div>
         </div>
@@ -55,15 +55,15 @@ export default function CommanderCenter({ user }) {
         <div className="flex gap-4">
           <button 
             onClick={() => setLockdownOpen(true)}
-            className={`px-6 py-2 border flex items-center gap-2 font-bold text-xs tracking-tighter transition-all active:scale-95 ${
-              isLocked ? 'bg-rose-500 text-white border-rose-500 shadow-[0_0_15px_rgba(244,63,94,0.4)]' : 'border-rose-500/50 text-rose-500 hover:bg-rose-500/10'
+            className={`px-8 py-3 rounded-xl border flex items-center gap-3 font-black text-[10px] tracking-[0.2em] transition-all active:scale-95 shadow-xl ${
+              isLocked ? 'bg-brand-danger text-white border-brand-danger shadow-[0_0_25px_rgba(239,68,68,0.4)]' : 'border-brand-danger/40 text-brand-danger hover:bg-brand-danger/10 backdrop-blur-md'
             }`}
           >
-            <Power size={16} />
+            <Power size={18} />
             {isLocked ? 'ABORT LOCKDOWN' : 'INITIATE LOCKDOWN'}
           </button>
-          <button className="px-6 py-2 border border-emerald-500/50 text-emerald-500 hover:bg-emerald-500/10 font-bold text-xs tracking-tighter active:scale-95 transition-all">
-            <Radio size={16} className="inline mr-2" />
+          <button className="px-8 py-3 rounded-xl border border-white/10 bg-white/5 text-white hover:bg-white/10 font-black text-[10px] tracking-[0.2em] active:scale-95 transition-all backdrop-blur-md">
+            <Radio size={18} className="inline mr-3 text-brand-cyan" />
             MASS BROADCAST
           </button>
         </div>
@@ -74,99 +74,99 @@ export default function CommanderCenter({ user }) {
         
         {/* Left Column: Stats & Log */}
         <div className="lg:col-span-3 flex flex-col gap-6">
-          <div className="bg-[#0f172a] border border-emerald-500/10 p-4 rounded">
+          <div className="bg-white/5 border border-white/10 p-6 rounded-2xl shadow-xl backdrop-blur-md">
             <div className="flex items-center justify-between mb-4">
-               <span className="text-[10px] font-bold text-emerald-500/40 uppercase tracking-widest">Network Load</span>
-               <span className="text-xs">74%</span>
+               <span className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em]">Network Load</span>
+               <span className="text-xs font-black font-mono">74%</span>
             </div>
-            <div className="h-2 bg-[#1e293b] rounded-full overflow-hidden">
-               <motion.div initial={{width: 0}} animate={{width: '74%'}} className="h-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]"></motion.div>
+            <div className="h-2 bg-white/5 rounded-full overflow-hidden border border-white/5">
+               <motion.div initial={{width: 0}} animate={{width: '74%'}} className="h-full bg-brand-cyan shadow-[0_0_15px_rgba(6,182,212,0.6)]"></motion.div>
             </div>
           </div>
 
-          <div className="bg-[#0f172a] border border-emerald-500/10 p-4 rounded flex-1">
-             <div className="flex items-center gap-2 mb-4 text-[10px] font-bold uppercase tracking-widest opacity-40">
-                <Activity size={12} />
+          <div className="bg-white/5 border border-white/10 p-6 rounded-2xl flex-1 shadow-xl backdrop-blur-md">
+             <div className="flex items-center gap-3 mb-5 text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">
+                <Activity size={14} className="text-brand-cyan" />
                 Live Terminal Log
              </div>
-             <div className="text-[10px] space-y-2 overflow-y-auto max-h-[300px]">
+             <div className="text-[10px] space-y-3 overflow-y-auto max-h-[400px] font-mono pr-2">
                 {terminalLog.map((log, i) => (
-                  <div key={i} className="flex gap-2">
-                    <span className="text-emerald-500/30">[{new Date().toLocaleTimeString()}]</span>
-                    <span className={log.includes('CRITICAL') ? 'text-rose-400' : ''}>{log}</span>
+                  <div key={i} className="flex gap-3 leading-relaxed">
+                    <span className="text-slate-600">[{new Date().toLocaleTimeString()}]</span>
+                    <span className={log.includes('CRITICAL') ? 'text-brand-danger font-black' : 'text-slate-300'}>{log}</span>
                   </div>
                 ))}
-                <motion.div animate={{opacity: [0, 1]}} transition={{repeat: Infinity, duration: 0.8}} className="w-2 h-3 bg-emerald-500 inline-block"></motion.div>
+                <motion.div animate={{opacity: [0, 1]}} transition={{repeat: Infinity, duration: 0.8}} className="w-2 h-3 bg-brand-cyan inline-block shadow-[0_0_8px_#06b6d4]"></motion.div>
              </div>
           </div>
         </div>
 
         {/* Center Column: Incident Command Overview */}
         <div className="lg:col-span-6 space-y-6">
-           <div className="bg-[#0f172a] border border-emerald-500/10 p-6 rounded relative overflow-hidden group">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rotate-45 translate-x-16 -translate-y-16"></div>
-              <h3 className="font-bold flex items-center gap-3 border-b border-emerald-500/10 pb-4 mb-6">
-                 <Shield className="text-emerald-400" size={20} />
-                 INCIDENT COMMAND OVERVIEW
+           <div className="bg-white/5 border border-white/10 p-8 rounded-2xl relative overflow-hidden group shadow-2xl backdrop-blur-md">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-brand-cyan/5 rotate-45 translate-x-16 -translate-y-16"></div>
+              <h3 className="font-black flex items-center gap-4 border-b border-white/5 pb-6 mb-8 text-[11px] uppercase tracking-[0.3em] cyan-glow-text">
+                 <Shield className="text-brand-cyan" size={24} />
+                 COMMAND OVERVIEW
               </h3>
               
               <div className="space-y-4">
                  {responders.map((r) => (
-                   <div key={r.id} className="flex items-center justify-between border border-emerald-500/5 p-3 hover:bg-emerald-500/5 transition-colors cursor-pointer group">
-                      <div className="flex items-center gap-3">
-                         <div className="font-mono text-[10px] text-emerald-500/40 bg-[#1e293b] px-1.5 py-0.5">{r.id}</div>
-                         <div>
-                            <p className="text-sm font-bold text-white group-hover:text-emerald-400 transition-colors uppercase">{r.name}</p>
-                            <p className="text-[10px] opacity-40 uppercase tracking-tighter">{r.location}</p>
-                         </div>
-                      </div>
-                      <div className="text-right">
-                         <div className={`text-[10px] font-bold ${r.status === 'Active' ? 'text-emerald-400' : 'text-amber-400'}`}>{r.status.toUpperCase()}</div>
-                         <div className="w-24 h-1 bg-[#1e293b] rounded-full mt-1">
-                            <div style={{width: `${r.load}%`}} className={`h-full ${r.load > 80 ? 'bg-rose-500' : 'bg-emerald-500'}`}></div>
-                         </div>
-                      </div>
-                   </div>
+                    <div key={r.id} className="flex items-center justify-between border border-white/5 p-4 rounded-xl hover:bg-white/5 transition-all cursor-pointer group hover:border-brand-cyan/30">
+                       <div className="flex items-center gap-5">
+                          <div className="font-mono text-[10px] font-black text-brand-cyan bg-brand-cyan/10 px-2.5 py-1 rounded border border-brand-cyan/20">{r.id}</div>
+                          <div>
+                             <p className="text-sm font-black text-white group-hover:text-brand-cyan transition-colors uppercase tracking-wider">{r.name}</p>
+                             <p className="text-[10px] text-slate-500 uppercase tracking-[0.2em] mt-1">{r.location}</p>
+                          </div>
+                       </div>
+                       <div className="text-right">
+                          <div className={`text-[10px] font-black tracking-widest ${r.status === 'Active' ? 'text-brand-accent' : 'text-brand-warning'}`}>{r.status.toUpperCase()}</div>
+                          <div className="w-32 h-1.5 bg-white/5 rounded-full mt-2 border border-white/5 overflow-hidden">
+                             <div style={{width: `${r.load}%`}} className={`h-full ${r.load > 80 ? 'bg-brand-danger shadow-[0_0_8px_#ef4444]' : 'bg-brand-accent shadow-[0_0_8px_#10b981]'}`}></div>
+                          </div>
+                       </div>
+                    </div>
                  ))}
               </div>
            </div>
 
-           <div className="grid grid-cols-2 gap-4">
-              <div className="bg-[#0f172a] border border-emerald-500/10 p-4 rounded text-center">
-                 <Globe size={24} className="mx-auto mb-2 opacity-40" />
-                 <p className="text-[10px] opacity-40 uppercase">Satellite Link</p>
-                 <p className="text-sm font-bold">SECURE_CHANNEL_Alpha_9</p>
+           <div className="grid grid-cols-2 gap-6">
+              <div className="bg-white/5 border border-white/10 p-6 rounded-2xl shadow-xl backdrop-blur-md text-center group hover:border-brand-cyan/30 transition-all">
+                 <Globe size={28} className="mx-auto mb-3 text-slate-600 group-hover:text-brand-cyan transition-colors" />
+                 <p className="text-[9px] font-black text-slate-500 uppercase tracking-[0.2em]">Satellite Link</p>
+                 <p className="text-xs font-black text-white mt-1 tracking-widest uppercase">SECURE_Alpha_9</p>
               </div>
-              <div className="bg-[#0f172a] border border-emerald-500/10 p-4 rounded text-center">
-                 <Lock size={24} className="mx-auto mb-2 opacity-40 text-rose-500" />
-                 <p className="text-[10px] opacity-40 uppercase">E-Encryption</p>
-                 <p className="text-sm font-bold">ACTIVE / 4096-BIT</p>
+              <div className="bg-white/5 border border-white/10 p-6 rounded-2xl shadow-xl backdrop-blur-md text-center group hover:border-brand-danger/30 transition-all">
+                 <Lock size={28} className="mx-auto mb-3 text-brand-danger shadow-[0_0_10px_#ef444433]" />
+                 <p className="text-[9px] font-black text-slate-500 uppercase tracking-[0.2em]">E-Encryption</p>
+                 <p className="text-xs font-black text-white mt-1 tracking-widest uppercase">ACTIVE / 4096-BIT</p>
               </div>
            </div>
         </div>
 
         {/* Right Column: Operator Access Codes */}
         <div className="lg:col-span-3">
-           <div className="bg-[#0f172a] border border-emerald-500/10 p-6 rounded h-full flex flex-col">
-              <h3 className="font-bold flex items-center gap-3 border-b border-emerald-500/10 pb-4 mb-6">
-                 <Key className="text-emerald-400" size={20} />
-                 OPERATOR ACCESS
+           <div className="bg-white/5 border border-white/10 p-8 rounded-2xl h-full flex flex-col shadow-2xl backdrop-blur-md">
+              <h3 className="font-black flex items-center gap-4 border-b border-white/5 pb-6 mb-8 text-[11px] uppercase tracking-[0.3em] cyan-glow-text">
+                 <Key className="text-brand-cyan" size={24} />
+                 ACCESS CODES
               </h3>
-              <div className="space-y-6 flex-1">
+              <div className="space-y-8 flex-1">
                  {accessCodes.map((ac) => (
-                   <div key={ac.id} className="border-b border-emerald-500/5 pb-4 last:border-0 relative group">
-                      <div className="flex justify-between items-center mb-1">
-                         <span className="text-[10px] font-bold text-emerald-500/40">{ac.id}</span>
-                         <span className={`text-[8px] font-bold px-1 rounded ${
-                           ac.status === 'Active' ? 'bg-emerald-500/20 text-emerald-500' : 'bg-rose-500/20 text-rose-500'
-                         }`}>{ac.status.toUpperCase()}</span>
-                      </div>
-                      <p className="text-sm font-bold text-white">{ac.operator}</p>
-                      <p className="text-[10px] opacity-40">LVL {ac.level} • {ac.code}</p>
-                   </div>
+                    <div key={ac.id} className="border-b border-white/5 pb-5 last:border-0 relative group">
+                       <div className="flex justify-between items-center mb-2">
+                          <span className="text-[10px] font-black text-slate-600 tracking-widest">{ac.id}</span>
+                          <span className={`text-[9px] font-black px-3 py-0.5 rounded-full shadow-lg ${
+                            ac.status === 'Active' ? 'bg-brand-accent/20 text-brand-accent border border-brand-accent/30' : 'bg-brand-danger/20 text-brand-danger border border-brand-danger/30'
+                          }`}>{ac.status.toUpperCase()}</span>
+                       </div>
+                       <p className="text-sm font-black text-white uppercase tracking-wider">{ac.operator}</p>
+                       <p className="text-[10px] text-slate-500 font-mono mt-1 tracking-widest uppercase">LVL {ac.level} • {ac.code}</p>
+                    </div>
                  ))}
               </div>
-              <button className="mt-6 w-full py-2 bg-emerald-500/10 border border-emerald-500/20 text-emerald-500 font-bold text-xs hover:bg-emerald-500/20 transition-all uppercase tracking-widest">
+              <button className="mt-8 w-full py-3 bg-white/5 border border-white/10 text-white font-black text-[10px] hover:bg-white/10 transition-all uppercase tracking-[0.3em] rounded-xl backdrop-blur-md active:scale-95 shadow-xl">
                  Generate Tokens
               </button>
            </div>
