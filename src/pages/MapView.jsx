@@ -7,13 +7,13 @@ export default function MapView({ incidents }) {
     <div className="flex flex-col h-full -m-6 md:-m-8 relative"> {/* Added relative for predictable overlay positioning */}
       {/* Map Header Overlay */}
       <div className="absolute top-[10px] left-[52px] z-20 flex flex-row items-stretch gap-4 pointer-events-none">
-        <div className="bg-white p-4 rounded-2xl shadow-xl border border-slate-200 flex items-center gap-4 pointer-events-auto transition-all hover:scale-105 h-[80px]">
-          <div className="bg-emerald-500 p-2 rounded-xl text-white shadow-lg shadow-emerald-500/30">
-            <Shield size={24} />
+        <div className="bg-[#1a1f26]/85 backdrop-blur-[8px] p-5 rounded-2xl shadow-[0_20px_40px_rgba(0,0,0,0.6)] border border-brand-cyan/20 flex items-center gap-5 pointer-events-auto transition-all hover:scale-105 h-[90px] min-w-[220px]">
+          <div className="bg-brand-cyan/20 p-3 rounded-xl text-brand-cyan border border-brand-cyan/30 shadow-[0_0_15px_rgba(6,182,212,0.3)]">
+            <Shield size={28} />
           </div>
-          <div className="min-w-[120px]">
-            <h2 className="text-lg font-black text-slate-900 leading-none">TACTICAL_VIEW</h2>
-            <p className="text-[9px] font-mono text-emerald-600 uppercase tracking-widest mt-1">Status: Active Monitor</p>
+          <div>
+            <h2 className="text-xl font-black text-white tracking-[0.2em] leading-none uppercase">TACTICAL_VIEW</h2>
+            <p className="text-[10px] font-black font-mono text-brand-accent uppercase tracking-[0.2em] mt-2">Status: Active Monitor</p>
           </div>
         </div>
 
@@ -46,12 +46,12 @@ export default function MapView({ incidents }) {
       </div>
 
       {/* Map Controls Overlay (Right) */}
-      <div className="absolute top-[135px] right-[10px] z-10 flex flex-col gap-3">
-        <button className="p-3 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl shadow-lg transition-all active:scale-95 group">
-          <Layers size={20} className="text-slate-500 group-hover:text-emerald-500" />
+      <div className="absolute top-[145px] right-[10px] z-10 flex flex-col gap-4">
+        <button className="p-3.5 bg-[#1a1f26]/90 hover:bg-white/10 border border-white/10 rounded-xl shadow-2xl transition-all active:scale-95 group backdrop-blur-md">
+          <Layers size={22} className="text-slate-400 group-hover:text-brand-cyan transition-colors" />
         </button>
-        <button className="p-3 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl shadow-lg transition-all active:scale-95 group">
-          <MapPin size={20} className="text-slate-500 group-hover:text-emerald-500" />
+        <button className="p-3.5 bg-[#1a1f26]/90 hover:bg-white/10 border border-white/10 rounded-xl shadow-2xl transition-all active:scale-95 group backdrop-blur-md">
+          <MapPin size={22} className="text-slate-400 group-hover:text-brand-cyan transition-colors" />
         </button>
       </div>
 
@@ -61,18 +61,18 @@ export default function MapView({ incidents }) {
       </div>
 
       {/* Legend Footer */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 px-6 py-3 bg-white/90 backdrop-blur-md border border-slate-200 rounded-full shadow-2xl flex items-center gap-8 z-10">
-         <div className="flex items-center gap-2">
-            <div className="w-3 h-3 bg-rose-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(244,63,94,0.5)]"></div>
-            <span className="text-[10px] font-black text-slate-600 uppercase tracking-widest">High Threat</span>
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 px-10 py-4 bg-[#1a1f26]/85 backdrop-blur-[8px] border border-white/10 rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.8)] flex items-center gap-10 z-10">
+         <div className="flex items-center gap-3">
+            <div className="w-3 h-3 bg-brand-danger rounded-full animate-pulse shadow-[0_0_12px_rgba(239,68,68,0.6)]"></div>
+            <span className="text-[10px] font-black text-slate-300 uppercase tracking-[0.2em]">High Threat</span>
          </div>
-         <div className="flex items-center gap-2 border-l border-slate-200 pl-8">
-            <div className="w-3 h-3 bg-amber-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(245,158,11,0.5)]"></div>
-            <span className="text-[10px] font-black text-slate-600 uppercase tracking-widest">Dispatched</span>
+         <div className="flex items-center gap-3 border-l border-white/10 pl-10">
+            <div className="w-3 h-3 bg-brand-warning rounded-full animate-pulse shadow-[0_0_12px_rgba(245,158,11,0.6)]"></div>
+            <span className="text-[10px] font-black text-slate-300 uppercase tracking-[0.2em]">Dispatched</span>
          </div>
-         <div className="flex items-center gap-2 border-l border-slate-200 pl-8">
-            <div className="w-3 h-3 bg-emerald-500 rounded-full"></div>
-            <span className="text-[10px] font-black text-slate-600 uppercase tracking-widest">Assets Standby</span>
+         <div className="flex items-center gap-3 border-l border-white/10 pl-10">
+            <div className="w-3 h-3 bg-brand-accent rounded-full shadow-[0_0_12px_rgba(16,185,129,0.4)]"></div>
+            <span className="text-[10px] font-black text-slate-300 uppercase tracking-[0.2em]">Assets Standby</span>
          </div>
       </div>
     </div>
