@@ -3,7 +3,7 @@ import { Bell, Search, User, Zap, Wifi, Clock, ShieldCheck, Menu } from 'lucide-
 
 export default function TopNav({ user, toggleSidebar }) {
   return (
-    <header className="h-20 antigravity-panel flex items-center justify-between px-6 md:px-10 z-10 sticky top-0 animate-float [animation-delay:1s]">
+    <header className="h-20 bg-white/5 backdrop-blur-xl border-b border-white/10 flex items-center justify-between px-4 md:px-8 z-10 sticky top-0">
       <div className="flex items-center gap-4 md:gap-6">
         <button 
           onClick={toggleSidebar}

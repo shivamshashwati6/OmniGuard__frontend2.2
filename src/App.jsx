@@ -82,7 +82,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="flex h-screen text-slate-300 overflow-hidden font-sans relative antigravity-layout">
+      <div className="flex h-screen volumetric-bg text-slate-300 overflow-hidden font-sans relative">
         <Sidebar 
           user={user} 
           onLogout={handleLogout} 
@@ -91,10 +91,9 @@ function App() {
         />
         
         <div className={cn(
-          "flex-1 flex flex-col min-w-0 relative h-full transition-all duration-500 gap-6",
+          "flex-1 flex flex-col min-w-0 relative h-full transition-all duration-300",
           isSidebarOpen ? "lg:ml-64" : "lg:ml-20"
         )}>
-          {/* Scanning Line Overlay */}
           <div className="absolute inset-0 pointer-events-none z-50 opacity-[0.01] bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[length:100%_4px,3px_100%]" />
           
           <TopNav 
@@ -103,7 +102,7 @@ function App() {
             toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} 
           />
           
-          <main className="flex-1 overflow-y-auto scrollbar-hide">
+          <main className="flex-1 overflow-y-auto p-4 md:p-8">
             <Routes>
               {/* Universal Profile Route */}
               <Route path="/profile" element={
