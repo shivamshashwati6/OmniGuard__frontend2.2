@@ -12,7 +12,7 @@ export default function ResponderIncidents() {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col h-full gap-6">
+    <div className="flex flex-col min-h-full gap-8 pb-12">
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-2xl font-bold text-slate-900">Active Assignments</h2>
@@ -88,7 +88,7 @@ export default function ResponderIncidents() {
           Automated risk assessment confirms high density in Beltola. Maintain active sync with dispatcher. Secondary units are on standby.
         </p>
         <button className="w-full py-4 bg-white/10 hover:bg-white/20 border border-white/5 text-white font-black rounded-2xl text-xs uppercase tracking-[0.2em] transition-all relative z-10 shadow-2xl">
-          Request Backup
+          REQUEST BACKUP
         </button>
       </div>
     </div>
