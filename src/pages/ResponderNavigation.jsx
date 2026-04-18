@@ -32,8 +32,8 @@ export default function ResponderNavigation() {
           </div>
 
           {/* Map Overlay HUD */}
-          <div className="absolute top-6 left-6 z-10">
-             <div className="bg-white/95 backdrop-blur-md p-5 rounded-3xl shadow-2xl border border-white/50 flex items-center gap-8">
+          <div className="absolute top-6 left-[72px] z-10 w-full max-w-md">
+             <div className="bg-white/95 backdrop-blur-md p-6 rounded-3xl shadow-2xl border border-white/50 flex items-center justify-between gap-6">
                 <div className="flex items-center gap-5">
                    <div className="bg-emerald-500 p-4 rounded-2xl text-white shadow-xl shadow-emerald-500/40 shrink-0">
                       <Navigation size={28} />
@@ -50,16 +50,16 @@ export default function ResponderNavigation() {
              </div>
           </div>
           {/* Map Registry Overlay (Top Right) */}
-          <div className="absolute top-6 right-6 z-20 bg-slate-900/90 backdrop-blur-xl border border-white/10 p-4 rounded-2xl pointer-events-none shadow-2xl min-w-[150px]">
-            <h4 className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] mb-3">Map Registry</h4>
-            <div className="space-y-3">
-               <div className="flex items-center gap-3">
-                  <div className="w-2.5 h-2.5 rounded-full bg-rose-500 animate-pulse shadow-[0_0_10px_#f43f5e]" />
-                  <span className="text-[10px] text-slate-300 font-bold uppercase tracking-widest">Detected</span>
+          <div className="absolute top-6 right-6 z-10 bg-slate-900/80 backdrop-blur-md border border-slate-800 p-4 rounded-2xl pointer-events-none shadow-2xl min-w-[140px]">
+            <h4 className="text-[8px] font-black text-slate-500 uppercase tracking-[0.2em] mb-2">Map Registry</h4>
+            <div className="space-y-2">
+               <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-rose-500 animate-pulse shadow-[0_0_8px_#f43f5e]" />
+                  <span className="text-[9px] text-slate-300 font-bold uppercase tracking-wider">Detected</span>
                </div>
-               <div className="flex items-center gap-3">
-                  <div className="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse shadow-[0_0_10px_#f59e0b]" />
-                  <span className="text-[10px] text-slate-300 font-bold uppercase tracking-widest">Dispatched</span>
+               <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-amber-500 animate-pulse shadow-[0_0_8px_#f59e0b]" />
+                  <span className="text-[9px] text-slate-300 font-bold uppercase tracking-wider">Team Dispatched</span>
                </div>
             </div>
           </div>
