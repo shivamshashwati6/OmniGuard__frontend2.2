@@ -9,7 +9,7 @@ export default function CivilianStatus() {
   ];
 
   return (
-    <div className="flex flex-col h-full gap-8">
+    <div className="flex flex-col min-h-full gap-8 pb-12">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
           <h2 className="text-3xl font-black text-slate-900 tracking-tight uppercase tracking-[0.1em]">Status Tracking</h2>
