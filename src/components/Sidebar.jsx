@@ -38,17 +38,17 @@ export default function Sidebar({ user, onLogout, isOpen, setIsOpen }) {
       {/* Mobile Backdrop */}
       {isOpen && (
         <div 
-          className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-30 lg:hidden"
+          className="fixed inset-0 bg-black/60 backdrop-blur-md z-30 lg:hidden"
           onClick={() => setIsOpen(false)}
         />
       )}
 
       <aside className={cn(
-        "fixed lg:fixed left-0 top-0 h-full bg-white border-r border-slate-200 flex flex-col z-40 transition-all duration-300 ease-in-out shadow-xl lg:shadow-sm overflow-hidden",
+        "fixed lg:fixed left-0 top-0 h-full glass-panel border-r border-white/10 flex flex-col z-40 transition-all duration-300 ease-in-out rounded-none overflow-hidden",
         isOpen ? "w-64 translate-x-0" : "w-64 -translate-x-full lg:translate-x-0 lg:w-20"
       )}>
         <div className={cn(
-          "p-6 flex flex-col items-center border-b border-slate-100 transition-all duration-300",
+          "p-6 flex flex-col items-center border-b border-white/10 transition-all duration-300",
           !isOpen && "lg:p-4 lg:items-center"
         )}>
           <div className="relative mb-3">
@@ -59,8 +59,8 @@ export default function Sidebar({ user, onLogout, isOpen, setIsOpen }) {
             "text-center transition-opacity duration-300",
             !isOpen && "lg:opacity-0 lg:h-0 overflow-hidden"
           )}>
-            <h1 className="font-bold text-base tracking-[0.2em] text-slate-900 uppercase">OMNIGUARD</h1>
-            <p className="text-[8px] text-emerald-500 font-mono tracking-[0.4em] uppercase mt-1">Operational {role}</p>
+            <h1 className="font-bold text-base tracking-[0.2em] text-white uppercase">OMNIGUARD</h1>
+            <p className="text-[8px] text-emerald-400 font-mono tracking-[0.4em] uppercase mt-1">Operational {role}</p>
           </div>
         </div>
 
@@ -81,8 +81,8 @@ export default function Sidebar({ user, onLogout, isOpen, setIsOpen }) {
               className={({ isActive }) => cn(
                 "flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 group relative overflow-hidden",
                 isActive 
-                  ? "bg-emerald-500/10 text-emerald-600 border border-emerald-500/20 shadow-[0_0_15px_rgba(16,185,129,0.1)]" 
-                  : "text-slate-500 hover:text-slate-900 hover:bg-slate-50",
+                  ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 shadow-[0_0_20px_rgba(16,185,129,0.2)]" 
+                  : "text-slate-400 hover:text-white hover:bg-white/5",
                 !isOpen && "lg:justify-center lg:px-0"
               )}
             >
@@ -96,7 +96,7 @@ export default function Sidebar({ user, onLogout, isOpen, setIsOpen }) {
                   )}
                   <item.icon size={18} className={cn(
                     "transition-transform duration-300 group-hover:scale-110 shrink-0",
-                    isActive ? "text-emerald-500" : "text-slate-400 group-hover:text-emerald-500/70"
+                    isActive ? "text-emerald-400" : "text-slate-500 group-hover:text-emerald-400"
                   )} />
                   <span className={cn(
                     "text-xs font-semibold tracking-wide whitespace-nowrap transition-all duration-300",
@@ -120,7 +120,7 @@ export default function Sidebar({ user, onLogout, isOpen, setIsOpen }) {
         <div className="p-4 space-y-4">
           {/* System Health Card */}
           <div className={cn(
-            "bg-slate-50 border border-slate-100 p-4 rounded-xl transition-all duration-300",
+            "bg-white/5 border border-white/10 p-4 rounded-2xl transition-all duration-300 shadow-lg backdrop-blur-md",
             !isOpen && "lg:p-2 lg:flex lg:flex-col lg:items-center"
           )}>
             <div className={cn(
@@ -140,12 +140,12 @@ export default function Sidebar({ user, onLogout, isOpen, setIsOpen }) {
               "space-y-2",
               !isOpen && "lg:hidden"
             )}>
-              <div className="flex justify-between text-[8px] font-mono text-slate-400 uppercase">
+              <div className="flex justify-between text-[8px] font-mono text-slate-500 uppercase">
                 <span>Encryption</span>
                 <span>Active</span>
               </div>
-              <div className="h-1 bg-slate-200 rounded-full overflow-hidden">
-                <div className="w-[94%] h-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
+              <div className="h-1 bg-white/10 rounded-full overflow-hidden">
+                <div className="w-[94%] h-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.6)]"></div>
               </div>
             </div>
           </div>
@@ -153,7 +153,7 @@ export default function Sidebar({ user, onLogout, isOpen, setIsOpen }) {
           <button 
             onClick={onLogout}
             className={cn(
-              "flex items-center gap-3 px-4 py-3 w-full text-slate-400 hover:text-rose-500 hover:bg-rose-50 rounded-xl transition-all duration-300 group",
+              "flex items-center gap-3 px-4 py-3 w-full text-slate-500 hover:text-rose-400 hover:bg-rose-500/10 rounded-xl transition-all duration-300 group",
               !isOpen && "lg:justify-center lg:px-0"
             )}
           >
