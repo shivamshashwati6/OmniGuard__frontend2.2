@@ -82,7 +82,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="flex h-screen bg-slate-50 text-slate-900 overflow-hidden font-sans relative">
+      <div className="flex h-screen text-slate-200 overflow-hidden font-sans relative">
         <Sidebar 
           user={user} 
           onLogout={handleLogout} 
