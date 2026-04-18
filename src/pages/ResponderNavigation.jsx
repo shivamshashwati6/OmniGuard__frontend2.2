@@ -48,6 +48,19 @@ export default function ResponderNavigation() {
                    <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mt-1">Est. Arrival</p>
                 </div>
              </div>
+          {/* Map Registry Overlay (Top Right) */}
+          <div className="absolute top-6 right-6 z-10 bg-slate-900/80 backdrop-blur-md border border-slate-800 p-4 rounded-2xl pointer-events-none shadow-2xl min-w-[140px]">
+            <h4 className="text-[8px] font-black text-slate-500 uppercase tracking-[0.2em] mb-2">Map Registry</h4>
+            <div className="space-y-2">
+               <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-rose-500 animate-pulse shadow-[0_0_8px_#f43f5e]" />
+                  <span className="text-[9px] text-slate-300 font-bold uppercase tracking-wider">Detected</span>
+               </div>
+               <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-amber-500 animate-pulse shadow-[0_0_8px_#f59e0b]" />
+                  <span className="text-[9px] text-slate-300 font-bold uppercase tracking-wider">Team Dispatched</span>
+               </div>
+            </div>
           </div>
         </div>
 
