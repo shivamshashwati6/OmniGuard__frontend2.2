@@ -38,7 +38,7 @@ export default function ReportEmergency({ onSuccess }) {
       {/* Progress Bar */}
       <div className="bg-[#16191f] p-8 rounded-3xl border border-white/10 mb-8 shadow-2xl">
         <div className="flex justify-between items-center mb-5">
-          <h2 className="text-xl font-black text-white uppercase tracking-widest">Report Emergency</h2>
+          <h2 className="text-xl font-black text-white uppercase tracking-widest" style={{ textShadow: '0 0 3px rgba(255, 255, 255, 0.3)' }}>Report Emergency</h2>
           <span className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em]">Step {step} of {totalSteps}</span>
         </div>
         <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden border border-white/5">
@@ -62,7 +62,7 @@ export default function ReportEmergency({ onSuccess }) {
               className="space-y-6"
             >
               <div className="text-center md:text-left mb-10">
-                <h3 className="text-2xl font-black text-white uppercase tracking-wider">What is the incident?</h3>
+                <h3 className="text-2xl font-black text-white uppercase tracking-wider" style={{ textShadow: '0 0 3px rgba(255, 255, 255, 0.3)' }}>What is the incident?</h3>
                 <p className="text-slate-500 mt-2 text-sm font-mono uppercase tracking-widest">Select the type of emergency you are witnessing.</p>
               </div>
               <div className="grid grid-cols-2 gap-4">
@@ -79,7 +79,7 @@ export default function ReportEmergency({ onSuccess }) {
                         : 'border-white/5 bg-[#252a32] hover:border-white/20'
                     }`}
                   >
-                    <div className={`p-6 rounded-[1.5rem] mb-5 border ${item.color.replace('bg-', 'bg-opacity-20 bg-').replace('text-', 'text-opacity-90 text-')}`}>
+                    <div className={`p-6 rounded-[1.5rem] mb-5 border ${item.color.replace('bg-', 'bg-opacity-20 bg-').replace('text-', 'text-opacity-90 text-')}`} style={{ boxShadow: '0 0 10px rgba(255, 255, 255, 0.05)' }}>
                       <item.icon size={40} />
                     </div>
                     <span className="font-black text-white text-base uppercase tracking-widest">{item.label}</span>
@@ -98,7 +98,7 @@ export default function ReportEmergency({ onSuccess }) {
               className="space-y-6"
             >
               <div className="mb-10">
-                <h3 className="text-2xl font-black text-white uppercase tracking-wider">Where is it happening?</h3>
+                <h3 className="text-2xl font-black text-white uppercase tracking-wider" style={{ textShadow: '0 0 3px rgba(255, 255, 255, 0.3)' }}>Where is it happening?</h3>
                 <p className="text-slate-500 mt-2 text-sm font-mono uppercase tracking-widest">Enter the address or use your device's GPS.</p>
               </div>
               
@@ -152,7 +152,7 @@ export default function ReportEmergency({ onSuccess }) {
               className="space-y-6"
             >
               <div className="mb-10">
-                <h3 className="text-2xl font-black text-white uppercase tracking-wider">Additional Details</h3>
+                <h3 className="text-2xl font-black text-white uppercase tracking-wider" style={{ textShadow: '0 0 3px rgba(255, 255, 255, 0.3)' }}>Additional Details</h3>
                 <p className="text-slate-500 mt-2 text-sm font-mono uppercase tracking-widest">Provide any extra info or photos to help responders.</p>
               </div>
 
@@ -202,8 +202,8 @@ export default function ReportEmergency({ onSuccess }) {
                 <CheckCircle2 size={48} />
               </div>
               <div>
-                <h3 className="text-4xl font-black text-white tracking-tighter uppercase cyan-glow-text">SOS DISPATCHED</h3>
-                <p className="text-slate-500 mt-4 text-sm font-mono uppercase tracking-widest leading-relaxed">
+                <h3 className="text-4xl font-black text-white tracking-tighter uppercase mb-4" style={{ textShadow: '0 0 8px rgba(6, 182, 212, 0.6)' }}>SOS DISPATCHED</h3>
+                <p className="text-[#eaeaea] font-black text-sm max-w-lg mx-auto leading-relaxed uppercase tracking-[0.1em]" style={{ textShadow: '0 0 3px rgba(255, 255, 255, 0.3)' }}>
                   Help is on the way to your location. <br/> Responders have been notified of your <strong>{formData.type.toUpperCase()}</strong> report.
                 </p>
               </div>
