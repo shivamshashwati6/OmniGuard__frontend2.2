@@ -43,26 +43,35 @@ export default function ResponderNavigation() {
                       <p className="font-black text-slate-900 text-lg truncate">350m - Turn Right at Beltola Chowk</p>
                    </div>
                 </div>
-                <div className="text-right border-l border-slate-100 pl-8 shrink-0">
-                   <p className="text-3xl font-black text-slate-900 leading-none">4 MIN</p>
-                   <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mt-1">Est. Arrival</p>
-                </div>
              </div>
           </div>
-          {/* Map Registry Overlay (Top Right) */}
-          <div className="absolute top-6 right-6 z-10 bg-slate-900/80 backdrop-blur-md border border-slate-800 p-4 rounded-2xl pointer-events-none shadow-2xl min-w-[140px]">
-            <h4 className="text-[8px] font-black text-slate-500 uppercase tracking-[0.2em] mb-2">Map Registry</h4>
-            <div className="space-y-2">
-               <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-rose-500 animate-pulse shadow-[0_0_8px_#f43f5e]" />
-                  <span className="text-[9px] text-slate-300 font-bold uppercase tracking-wider">Detected</span>
-               </div>
-               <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-amber-500 animate-pulse shadow-[0_0_8px_#f59e0b]" />
-                  <span className="text-[9px] text-slate-300 font-bold uppercase tracking-wider">Team Dispatched</span>
-               </div>
-            </div>
-          </div>
+
+           {/* Top Right Overlays */}
+           <div className="absolute top-6 right-6 z-20 flex flex-col items-end gap-4 pointer-events-none">
+              {/* Est. Arrival Pop-up */}
+              <div className="bg-slate-900/90 backdrop-blur-md p-5 rounded-2xl shadow-2xl border border-slate-800 flex flex-col items-end pointer-events-auto min-w-[140px]">
+                <p className="text-[8px] font-black text-slate-500 uppercase tracking-[0.2em] mb-1">Est. Arrival</p>
+                <div className="flex items-baseline gap-1 text-white">
+                  <span className="text-3xl font-black leading-none">4</span>
+                  <span className="text-xs font-black uppercase tracking-widest text-emerald-500">Min</span>
+                </div>
+              </div>
+
+              {/* Map Registry Pop-up */}
+              <div className="bg-slate-900/90 backdrop-blur-md p-5 rounded-2xl shadow-2xl border border-slate-800 pointer-events-auto min-w-[140px]">
+                <h4 className="text-[8px] font-black text-slate-500 uppercase tracking-[0.2em] mb-3">Map Registry</h4>
+                <div className="space-y-3">
+                   <div className="flex items-center justify-end gap-3 text-right">
+                      <span className="text-[9px] text-slate-300 font-bold uppercase tracking-wider">Detected</span>
+                      <div className="w-2 h-2 rounded-full bg-rose-500 animate-pulse shadow-[0_0_8px_#f43f5e]" />
+                   </div>
+                   <div className="flex items-center justify-end gap-3 text-right">
+                      <span className="text-[9px] text-slate-300 font-bold uppercase tracking-wider">Team Dispatched</span>
+                      <div className="w-2 h-2 rounded-full bg-amber-500 animate-pulse shadow-[0_0_8px_#f59e0b]" />
+                   </div>
+                </div>
+              </div>
+           </div>
         </div>
 
         {/* Controls Column */}
