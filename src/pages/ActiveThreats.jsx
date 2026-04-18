@@ -36,6 +36,7 @@ export default function ActiveThreats() {
             </tr>
           </thead>
           <tbody className="divide-y divide-white/5">
+            {threats.map((threat) => (
               <tr key={threat.id} className="hover:bg-white/[0.03] transition-all group">
                 <td className="px-6 py-5">
                    <span className="font-mono text-[11px] font-black text-slate-500 group-hover:text-brand-cyan tracking-widest">{threat.id}</span>
