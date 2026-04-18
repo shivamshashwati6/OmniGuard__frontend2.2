@@ -48,6 +48,7 @@ export default function ResponderNavigation() {
                    <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest mt-1">Est. Arrival</p>
                 </div>
              </div>
+          </div>
           {/* Map Registry Overlay (Top Right) */}
           <div className="absolute top-6 right-6 z-10 bg-slate-900/80 backdrop-blur-md border border-slate-800 p-4 rounded-2xl pointer-events-none shadow-2xl min-w-[140px]">
             <h4 className="text-[8px] font-black text-slate-500 uppercase tracking-[0.2em] mb-2">Map Registry</h4>
