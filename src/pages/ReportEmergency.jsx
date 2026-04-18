@@ -36,14 +36,18 @@ export default function ReportEmergency({ onSuccess }) {
   return (
     <div className="max-w-2xl mx-auto flex flex-col h-full bg-transparent md:p-4">
       {/* Progress Bar */}
-      <div className="bg-[#16191f] p-8 rounded-3xl border border-white/10 mb-8 shadow-2xl">
-        <div className="flex justify-between items-center mb-5">
-          <h2 className="text-xl font-black text-white uppercase tracking-widest">Report Emergency</h2>
-          <span className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em]">Step {step} of {totalSteps}</span>
+      <div className="bg-[#12151a] p-8 rounded-3xl border border-white/5 mb-8 shadow-[0_0_20px_rgba(0,255,150,0.1)]">
+        <div className="flex flex-col mb-5">
+            <h1 className="text-3xl font-black mb-6 tracking-[-0.05em] uppercase" style={{ color: '#ff3131', textShadow: '0 0 10px #ff3131, 0 0 20px #ff3131' }}>
+               EMERGENCY_SOS_LINK
+            </h1>
+            <p className="text-slate-500 font-black text-xs max-w-lg leading-relaxed uppercase tracking-[0.15em]" style={{ textShadow: '0 0 5px rgba(255, 255, 255, 0.3)' }}>
+               Automated high-priority routing is active. Your report will be immediately dispatched to the nearest tactical response unit.
+            </p>
         </div>
         <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden border border-white/5">
           <motion.div 
-            className="h-full bg-emerald-500"
+            className="h-full bg-[#00ff96] shadow-[0_0_15px_#00ff96]"
             initial={{ width: 0 }}
             animate={{ width: `${progress}%` }}
             transition={{ type: 'spring', stiffness: 100, damping: 20 }}
@@ -62,8 +66,8 @@ export default function ReportEmergency({ onSuccess }) {
               className="space-y-6"
             >
               <div className="text-center md:text-left mb-10">
-                <h3 className="text-2xl font-black text-white uppercase tracking-wider">What is the incident?</h3>
-                <p className="text-slate-500 mt-2 text-sm font-mono uppercase tracking-widest">Select the type of emergency you are witnessing.</p>
+                <h3 className="text-2xl font-black text-white uppercase tracking-wider" style={{ textShadow: '0 0 5px rgba(255, 255, 255, 0.6)' }}>What is the incident?</h3>
+                <p className="text-slate-500 mt-2 text-sm font-mono uppercase tracking-widest" style={{ textShadow: '0 0 5px rgba(255, 255, 255, 0.3)' }}>Select the type of emergency you are witnessing.</p>
               </div>
               <div className="grid grid-cols-2 gap-4">
                 {incidentTypes.map((item) => (
@@ -73,16 +77,19 @@ export default function ReportEmergency({ onSuccess }) {
                       setFormData({ ...formData, type: item.id })
                       handleNext()
                     }}
-                    className={`flex flex-col items-center justify-center p-10 rounded-[2.5rem] border transition-all active:scale-95 shadow-xl ${
+                    className={`flex flex-col items-center justify-center p-10 rounded-[2.5rem] border transition-all active:scale-95 shadow-2xl ${
                       formData.type === item.id 
-                        ? 'border-brand-accent bg-brand-accent/10' 
-                        : 'border-white/5 bg-[#252a32] hover:border-white/20'
+                        ? 'border-[#00ff96] bg-[#00ff96]/5' 
+                        : 'border-white/5 bg-[#1c2128] hover:border-white/20'
                     }`}
                   >
-                    <div className={`p-6 rounded-[1.5rem] mb-5 border ${item.color.replace('bg-', 'bg-opacity-20 bg-').replace('text-', 'text-opacity-90 text-')}`}>
-                      <item.icon size={40} />
+                    <div className={`p-6 rounded-[1.5rem] mb-5 border-2 shadow-[0_0_15px_rgba(255,255,255,0.1)] ${
+                      item.id === 'fire' ? 'border-brand-danger shadow-[0_0_15px_rgba(239,68,68,0.4)]' : 
+                      item.id === 'medical' ? 'border-[#00ff96] shadow-[0_0_15px_rgba(0,255,150,0.4)]' : 'border-white/20'
+                    }`}>
+                      <item.icon size={40} className={item.id === 'fire' ? 'text-brand-danger' : item.id === 'medical' ? 'text-[#00ff96]' : 'text-white'} />
                     </div>
-                    <span className="font-black text-white text-base uppercase tracking-widest">{item.label}</span>
+                    <span className="font-black text-white text-base uppercase tracking-widest" style={{ textShadow: '0_0_8px_rgba(255,255,255,0.8)' }}>{item.label}</span>
                   </button>
                 ))}
               </div>
@@ -98,8 +105,8 @@ export default function ReportEmergency({ onSuccess }) {
               className="space-y-6"
             >
               <div className="mb-10">
-                <h3 className="text-2xl font-black text-white uppercase tracking-wider">Where is it happening?</h3>
-                <p className="text-slate-500 mt-2 text-sm font-mono uppercase tracking-widest">Enter the address or use your device's GPS.</p>
+                <h3 className="text-2xl font-black text-white uppercase tracking-wider" style={{ textShadow: '0 0 5px rgba(255, 255, 255, 0.6)' }}>Where is it happening?</h3>
+                <p className="text-slate-500 mt-2 text-sm font-mono uppercase tracking-widest" style={{ textShadow: '0 0 5px rgba(255, 255, 255, 0.3)' }}>Enter the address or use your device's GPS.</p>
               </div>
               
               <div className="bg-[#252a32] p-6 rounded-3xl border border-white/5 shadow-2xl">
@@ -134,7 +141,7 @@ export default function ReportEmergency({ onSuccess }) {
                 <button 
                   disabled={!formData.location}
                   onClick={handleNext} 
-                  className="flex-1 py-5 bg-white text-slate-900 rounded-2xl font-black text-sm uppercase tracking-[0.3em] disabled:opacity-30 flex items-center justify-center gap-3 shadow-2xl"
+                  className="flex-1 py-5 bg-white text-slate-900 rounded-2xl font-black text-sm uppercase tracking-[0.3em] disabled:opacity-30 flex items-center justify-center gap-3 shadow-[0_0_20px_rgba(255,255,255,0.2)]"
                 >
                   Confirm Location
                   <ChevronRight size={20} />
@@ -152,16 +159,16 @@ export default function ReportEmergency({ onSuccess }) {
               className="space-y-6"
             >
               <div className="mb-10">
-                <h3 className="text-2xl font-black text-white uppercase tracking-wider">Additional Details</h3>
-                <p className="text-slate-500 mt-2 text-sm font-mono uppercase tracking-widest">Provide any extra info or photos to help responders.</p>
+                <h3 className="text-2xl font-black text-white uppercase tracking-wider" style={{ textShadow: '0 0 5px rgba(255, 255, 255, 0.6)' }}>Additional Details</h3>
+                <p className="text-slate-500 mt-2 text-sm font-mono uppercase tracking-widest" style={{ textShadow: '0 0 5px rgba(255, 255, 255, 0.3)' }}>Provide any extra info or photos to help responders.</p>
               </div>
 
               <div className="space-y-6">
-                <div className="bg-[#252a32] p-10 rounded-3xl border-2 border-dashed border-white/10 flex flex-col items-center justify-center text-slate-500 hover:border-brand-cyan/50 hover:bg-brand-cyan/5 transition-all cursor-pointer active:scale-95 group shadow-2xl">
+                <div className="bg-[#1c2128] p-10 rounded-3xl border-2 border-dashed border-white/10 flex flex-col items-center justify-center text-slate-500 hover:border-brand-cyan/50 hover:bg-brand-cyan/5 transition-all cursor-pointer active:scale-95 group shadow-2xl">
                   <div className="p-5 bg-white/5 rounded-full mb-4 group-hover:bg-brand-cyan/10 transition-all border border-white/5">
                     <Camera size={40} className="group-hover:text-brand-cyan transition-colors" />
                   </div>
-                  <span className="font-black text-sm uppercase tracking-widest">Add Photos (Optional)</span>
+                  <span className="font-black text-sm uppercase tracking-widest" style={{ textShadow: '0 0 5px rgba(255, 255, 255, 0.4)' }}>Add Photos (Optional)</span>
                   <span className="text-[10px] font-mono uppercase tracking-[0.3em] mt-2">Tap to capture sequence</span>
                 </div>
  
@@ -196,7 +203,7 @@ export default function ReportEmergency({ onSuccess }) {
               key="step4"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              className="bg-[#16191f] p-12 rounded-[3.5rem] shadow-[0_40px_80px_rgba(0,0,0,0.9)] border border-white/10 flex flex-col items-center text-center space-y-8"
+              className="bg-[#12151a] border border-[#00ff96] rounded-[3rem] p-8 md:p-12 relative overflow-hidden group shadow-[0_0_20px_rgba(0,255,150,0.15)] flex flex-col items-center text-center space-y-8"
             >
               <div className="w-24 h-24 bg-emerald-500 text-white rounded-full flex items-center justify-center shadow-lg shadow-emerald-500/40">
                 <CheckCircle2 size={48} />
