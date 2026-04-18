@@ -6,32 +6,47 @@ export default function MapView({ incidents }) {
   return (
     <div className="flex flex-col h-full -m-6 md:-m-8 relative"> {/* Added relative for predictable overlay positioning */}
       {/* Map Header Overlay */}
-      <div className="absolute top-12 left-12 z-20 flex flex-row items-start gap-4 pointer-events-none">
-        <div className="bg-white p-4 rounded-2xl shadow-xl border border-slate-200 flex items-center gap-4 pointer-events-auto transition-all hover:scale-105">
+      <div className="absolute top-[10px] left-[52px] z-20 flex flex-row items-stretch gap-4 pointer-events-none">
+        <div className="bg-white p-4 rounded-2xl shadow-xl border border-slate-200 flex items-center gap-4 pointer-events-auto transition-all hover:scale-105 h-[80px]">
           <div className="bg-emerald-500 p-2 rounded-xl text-white shadow-lg shadow-emerald-500/30">
             <Shield size={24} />
           </div>
-          <div>
-            <h2 className="text-xl font-black text-slate-900 leading-none">TACTICAL_VIEW</h2>
-            <p className="text-[10px] font-mono text-emerald-600 uppercase tracking-widest mt-1">Status: Active Monitor</p>
+          <div className="min-w-[120px]">
+            <h2 className="text-lg font-black text-slate-900 leading-none">TACTICAL_VIEW</h2>
+            <p className="text-[9px] font-mono text-emerald-600 uppercase tracking-widest mt-1">Status: Active Monitor</p>
           </div>
         </div>
 
-        <div className="bg-slate-900/90 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-slate-800 flex flex-col gap-3 pointer-events-auto">
+        <div className="bg-slate-900/90 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-slate-800 flex flex-col justify-center gap-2 pointer-events-auto h-[80px] min-w-[180px]">
           <div className="flex items-center gap-3 text-white">
              <Radio size={16} className="text-emerald-500 animate-pulse" />
              <span className="text-[10px] font-bold uppercase tracking-widest">Live Broadcast</span>
           </div>
           <div className="flex gap-2">
             {[1, 2, 3].map(i => (
-              <div key={i} className="w-10 h-1 bg-emerald-500/50 rounded-full" />
+              <div key={i} className="flex-1 h-1 bg-emerald-500/50 rounded-full" />
             ))}
           </div>
         </div>
       </div>
 
+      {/* Map Registry Overlay (Top Right) */}
+      <div className="absolute top-[10px] right-[10px] z-20 bg-slate-900/80 backdrop-blur-md border border-slate-800 p-4 rounded-2xl pointer-events-none shadow-2xl min-w-[160px]">
+        <h4 className="text-[9px] font-black text-slate-500 uppercase tracking-[0.2em] mb-3">Map Registry</h4>
+        <div className="space-y-3">
+           <div className="flex items-center gap-3">
+              <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse shadow-[0_0_8px_#f43f5e]" />
+              <span className="text-[10px] text-slate-300 font-bold uppercase tracking-wider">Detected</span>
+           </div>
+           <div className="flex items-center gap-3">
+              <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse shadow-[0_0_8px_#f59e0b]" />
+              <span className="text-[10px] text-slate-300 font-bold uppercase tracking-wider">Team Dispatched</span>
+           </div>
+        </div>
+      </div>
+
       {/* Map Controls Overlay (Right) */}
-      <div className="absolute top-[160px] right-12 z-10 flex flex-col gap-3">
+      <div className="absolute top-[135px] right-[10px] z-10 flex flex-col gap-3">
         <button className="p-3 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl shadow-lg transition-all active:scale-95 group">
           <Layers size={20} className="text-slate-500 group-hover:text-emerald-500" />
         </button>
