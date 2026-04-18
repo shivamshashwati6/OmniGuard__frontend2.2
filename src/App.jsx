@@ -19,6 +19,8 @@ import ActiveThreats from './pages/ActiveThreats'
 import CommanderCenter from './pages/CommanderCenter'
 import MapView from './pages/MapView'
 import TacticalDashboard from './pages/TacticalDashboard'
+import { Zap, Activity, Home } from 'lucide-react'
+import { Link, useLocation } from 'react-router-dom'
 
 const INITIAL_INCIDENTS = [
   { id: 'INC-701', type: 'Structural Fire', lat: 26.1445, lng: 91.7362, status: 'detected', severity: 'high' },
@@ -102,7 +104,10 @@ function App() {
             toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} 
           />
           
-          <main className="flex-1 overflow-y-auto p-4 md:p-8">
+          <main className={cn(
+            "flex-1 overflow-y-auto p-4 md:p-8 transition-all",
+            user?.role === 'civilian' && "pb-24 lg:pb-8"
+          )}>
             <Routes>
               {/* Universal Profile Route */}
               <Route path="/profile" element={
@@ -171,6 +176,26 @@ function App() {
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </main>
+
+          {/* Mobile Sticky SOS Bar (Civilian Only) */}
+          {user?.role === 'civilian' && (
+            <div className="lg:hidden fixed bottom-6 left-6 right-6 z-50">
+              <div className="glass-panel-heavy p-3 rounded-[2rem] flex items-center justify-between gap-4 shadow-[0_20px_50px_rgba(0,0,0,0.5)] border-white/20">
+                <Link to="/" className="p-4 text-slate-400 hover:text-white transition-colors">
+                  <Home size={24} />
+                </Link>
+                
+                <Link to="/sos" className="flex-1 bg-rose-600 hover:bg-rose-500 text-white rounded-[1.5rem] py-4 flex items-center justify-center gap-3 font-black text-xs uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(225,29,72,0.4)] transition-all active:scale-95">
+                  <Zap size={20} fill="currentColor" />
+                  INITIATE SOS
+                </Link>
+
+                <Link to="/status" className="p-4 text-slate-400 hover:text-white transition-colors">
+                  <Activity size={24} />
+                </Link>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </BrowserRouter>

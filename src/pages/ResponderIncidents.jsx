@@ -29,7 +29,7 @@ export default function ResponderIncidents() {
           <motion.div
             key={incident.id}
             whileHover={{ scale: 1.02, translateY: -5 }}
-            className={`p-8 rounded-[2rem] border transition-all glass-panel ${
+            className={`p-6 sm:p-8 rounded-[1.5rem] sm:rounded-[2rem] border transition-all glass-panel ${
               incident.priority === 'Critical' ? 'bg-brand-danger/5 border-brand-danger/20' : 'bg-white/5 border-white/10'
             } shadow-2xl relative overflow-hidden group`}
           >
@@ -53,7 +53,7 @@ export default function ResponderIncidents() {
               <MapPin size={18} className="text-brand-cyan" /> {incident.location}
             </p>
 
-            <div className="flex items-center justify-between pt-8 border-t border-white/5">
+            <div className="flex flex-col xs:flex-row items-stretch xs:items-center justify-between pt-8 border-t border-white/5 gap-4">
               <div className="flex items-center gap-4">
                 <div className="p-2.5 bg-white/5 border border-white/10 rounded-xl text-brand-cyan shadow-xl">
                   <Clock size={20} />
@@ -66,7 +66,7 @@ export default function ResponderIncidents() {
               
               <button 
                 onClick={() => navigate('/maps')}
-                className="flex items-center gap-3 bg-brand-cyan text-slate-900 px-6 py-3.5 rounded-2xl font-black text-xs shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:scale-105 transition-all active:scale-95 group tracking-[0.2em]"
+                className="flex items-center justify-center gap-3 bg-brand-cyan text-slate-900 px-6 py-4 rounded-2xl font-black text-xs shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:scale-105 transition-all active:scale-95 group tracking-[0.2em]"
               >
                 ENGAGE
                 <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />

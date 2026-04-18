@@ -15,10 +15,22 @@
 }
 
 @layer base {
+  :root {
+    font-size: 16px;
+  }
+
+  @media (max-width: 768px) {
+    :root {
+      font-size: 14px;
+    }
+  }
+
   body {
-    @apply text-slate-300 font-sans antialiased overflow-hidden selection:bg-brand-primary/30 selection:text-white;
+    @apply text-slate-300 font-sans antialiased selection:bg-brand-primary/30 selection:text-white;
     background: radial-gradient(circle at 50% 50%, var(--color-brand-bg-start) 0%, var(--color-brand-bg-end) 100%);
     min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 }
 
@@ -54,6 +66,18 @@
 
   .amber-glow-text {
     text-shadow: 0 0 15px rgba(245, 158, 11, 0.6);
+  }
+
+  .touch-target {
+    @apply min-w-[44px] min-h-[44px] flex items-center justify-center;
+  }
+
+  .mobile-stack {
+    @apply flex flex-col md:flex-row gap-4;
+  }
+
+  .fluid-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
   }
 }
 
