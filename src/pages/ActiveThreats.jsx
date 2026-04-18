@@ -10,76 +10,77 @@ const threats = [
 
 export default function ActiveThreats() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-8 animate-in fade-in duration-700">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-slate-900">Active Threat Center</h2>
-          <p className="text-slate-500">Categorized regional hazards and escalation levels</p>
+          <h2 className="text-3xl font-black text-white tracking-[0.2em] uppercase cyan-glow-text">Active Threat Center</h2>
+          <p className="text-slate-500 text-[10px] font-mono uppercase tracking-[0.4em] mt-1">Categorized regional hazards and escalation levels</p>
         </div>
-        <button className="flex items-center gap-2 bg-emerald-500 text-slate-900 px-4 py-2 rounded-xl font-bold text-sm">
+        <button className="flex items-center gap-3 bg-brand-danger text-white px-6 py-2.5 rounded-xl font-black text-xs uppercase tracking-widest shadow-[0_0_20px_rgba(239,68,68,0.3)] hover:scale-105 transition-all">
           <ShieldAlert size={18} />
           New Assessment
         </button>
       </div>
 
-      <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
+      <div className="bg-[#1a1f26] rounded-2xl border border-[#2d333b] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
         <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="bg-slate-50 border-b border-slate-100">
-              <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-400">Threat ID</th>
-              <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-400">Hazard Type</th>
-              <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-400">Location</th>
-              <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-400">Status</th>
-              <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-400">Risk Level</th>
-              <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-400">Detected</th>
-              <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-400">Actions</th>
+            <tr className="bg-white/5 border-b border-[#2d333b]">
+              <th className="px-6 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">Threat ID</th>
+              <th className="px-6 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">Hazard Type</th>
+              <th className="px-6 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">Location</th>
+              <th className="px-6 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">Status</th>
+              <th className="px-6 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">Risk Level</th>
+              <th className="px-6 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">Detected</th>
+              <th className="px-6 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 text-center">Actions</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-50">
+          <tbody className="divide-y divide-[#2d333b]">
             {threats.map((threat) => (
-              <tr key={threat.id} className="hover:bg-slate-50/50 transition-colors group">
-                <td className="px-6 py-4">
-                  <span className="font-mono text-sm font-bold text-slate-400 group-hover:text-emerald-500">{threat.id}</span>
+              <tr key={threat.id} className="hover:bg-white/[0.02] transition-colors group">
+                <td className="px-6 py-5">
+                   <span className="font-mono text-xs font-black text-slate-500 group-hover:text-brand-cyan transition-colors">{threat.id}</span>
                 </td>
-                <td className="px-6 py-4">
-                  <div className="flex items-center gap-3">
-                    <div className={`p-2 rounded-lg ${
-                      threat.risk === 'Extreme' ? 'bg-rose-100 text-rose-600' : 
-                      threat.risk === 'Major' ? 'bg-orange-100 text-orange-600' : 'bg-blue-100 text-blue-600'
+                <td className="px-6 py-5">
+                  <div className="flex items-center gap-4">
+                    <div className={`p-2.5 rounded-xl border ${
+                      threat.risk === 'Extreme' ? 'bg-brand-danger/20 text-brand-danger border-brand-danger/30' : 
+                      threat.risk === 'Major' ? 'bg-brand-warning/20 text-brand-warning border-brand-warning/30' : 
+                      'bg-brand-primary/20 text-brand-primary border-brand-primary/30'
                     }`}>
-                      <AlertCircle size={16} />
+                      <AlertCircle size={18} />
                     </div>
-                    <span className="font-bold text-slate-900">{threat.type}</span>
+                    <span className="font-black text-[#e1e1e1] uppercase tracking-wider text-sm">{threat.type}</span>
                   </div>
                 </td>
-                <td className="px-6 py-4">
-                  <span className="text-sm text-slate-600 flex items-center gap-1">
-                    <MapPin size={14} className="text-slate-400" />
+                <td className="px-6 py-5">
+                  <span className="text-xs text-slate-400 font-bold flex items-center gap-2 uppercase tracking-widest">
+                    <MapPin size={14} className="text-brand-cyan" />
                     {threat.district}
                   </span>
                 </td>
-                <td className="px-6 py-4">
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-100 text-[10px] font-bold text-slate-600 uppercase">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                <td className="px-6 py-5">
+                  <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[9px] font-black text-slate-400 uppercase tracking-widest">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse shadow-[0_0_8px_#10b981]"></span>
                     {threat.status}
                   </span>
                 </td>
-                <td className="px-6 py-4">
-                  <span className={`text-xs font-bold ${
-                    threat.risk === 'Extreme' ? 'text-rose-600' : 
-                    threat.risk === 'Major' ? 'text-orange-500' : 'text-blue-500'
+                <td className="px-6 py-5">
+                  <span className={`text-[10px] font-black uppercase tracking-[0.2em] ${
+                    threat.risk === 'Extreme' ? 'text-brand-danger cyan-glow-text' : 
+                    threat.risk === 'Major' ? 'text-brand-warning' : 'text-brand-primary'
                   }`}>
                     {threat.risk}
                   </span>
                 </td>
-                <td className="px-6 py-4">
-                  <span className="text-sm text-slate-400 flex items-center gap-1">
+                <td className="px-6 py-5">
+                  <span className="text-xs text-slate-500 font-mono flex items-center gap-2 tracking-widest uppercase">
                     <Clock size={14} />
                     {threat.time}
                   </span>
                 </td>
-                <td className="px-6 py-4">
-                  <button className="p-2 hover:bg-slate-100 rounded-lg text-slate-400 hover:text-emerald-500 transition-colors">
+                <td className="px-6 py-5 text-center">
+                  <button className="p-2.5 bg-white/5 border border-white/10 rounded-xl text-slate-500 hover:text-brand-cyan hover:border-brand-cyan/50 hover:bg-brand-cyan/10 transition-all active:scale-95">
                     <Zap size={18} />
                   </button>
                 </td>
@@ -89,40 +90,42 @@ export default function ActiveThreats() {
         </table>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-slate-900 p-6 rounded-2xl text-white">
-          <h3 className="font-bold mb-4 flex items-center gap-2">
-            <ShieldAlert className="text-emerald-400" size={20} />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="bg-[#1a1f26] p-8 rounded-2xl border border-[#2d333b] shadow-2xl relative overflow-hidden group">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-brand-cyan/5 rotate-45 translate-x-16 -translate-y-16"></div>
+          <h3 className="font-black text-white uppercase tracking-[0.2em] mb-6 flex items-center gap-3 border-b border-white/5 pb-5 cyan-glow-text">
+            <ShieldAlert className="text-brand-cyan" size={24} />
             Evacuation Protocols
           </h3>
-          <p className="text-slate-400 text-sm mb-6">Standard operating procedures for immediate regional threat escalation.</p>
-          <div className="space-y-4">
-            <div className="p-4 bg-slate-800 rounded-xl border-l-4 border-rose-500">
-              <h4 className="font-bold text-sm">Level 4 Red Alert</h4>
-              <p className="text-xs text-slate-500 mt-1">Full state mobilization and mandatory evacuation of low-lying flood zones.</p>
+          <p className="text-slate-500 text-xs font-mono uppercase tracking-[0.2em] mb-8 leading-relaxed">Standard operating procedures for immediate regional threat escalation.</p>
+          <div className="space-y-5">
+            <div className="p-5 bg-white/5 border border-white/10 rounded-xl border-l-4 border-l-brand-danger shadow-xl backdrop-blur-md">
+              <h4 className="font-black text-xs text-white uppercase tracking-widest">Level 4 Red Alert</h4>
+              <p className="text-[10px] text-slate-500 mt-2 font-mono uppercase tracking-widest leading-relaxed">Full state mobilization and mandatory evacuation of low-lying flood zones.</p>
             </div>
-            <div className="p-4 bg-slate-800 rounded-xl border-l-4 border-orange-500">
-              <h4 className="font-bold text-sm">Level 3 Orange Alert</h4>
-              <p className="text-xs text-slate-500 mt-1">Regional responder standby and pre-emptive resource distribution.</p>
+            <div className="p-5 bg-white/5 border border-white/10 rounded-xl border-l-4 border-l-brand-warning shadow-xl backdrop-blur-md">
+              <h4 className="font-black text-xs text-white uppercase tracking-widest">Level 3 Orange Alert</h4>
+              <p className="text-[10px] text-slate-500 mt-2 font-mono uppercase tracking-widest leading-relaxed">Regional responder standby and pre-emptive resource distribution.</p>
             </div>
           </div>
         </div>
         
-        <div className="bg-white p-6 rounded-2xl border border-slate-200">
-          <h3 className="font-bold mb-4 text-slate-900">Atmospheric Analysis</h3>
-          <div className="h-48 flex items-end justify-between gap-2 px-2">
+        <div className="bg-[#1a1f26] p-8 rounded-2xl border border-[#2d333b] shadow-2xl relative overflow-hidden group">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-brand-cyan/5 rotate-45 translate-x-16 -translate-y-16"></div>
+          <h3 className="font-black text-white uppercase tracking-[0.3em] mb-10 border-b border-white/5 pb-5 cyan-glow-text">Atmospheric Analysis</h3>
+          <div className="h-52 flex items-end justify-between gap-3 px-2">
              {[45, 60, 35, 80, 55, 90, 75, 40].map((h, i) => (
-               <div key={i} className="flex-1 bg-slate-100 rounded-t-lg relative group transition-all hover:bg-emerald-100">
-                 <div style={{height: `${h}%`}} className="bg-emerald-500/20 rounded-t-lg group-hover:bg-emerald-500 transition-all"></div>
-                 <div className="absolute -top-6 left-1/2 -translate-x-1/2 text-[10px] font-bold text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">{h}%</div>
+               <div key={i} className="flex-1 bg-white/5 rounded-t-xl relative group transition-all hover:bg-brand-cyan/10 border border-white/5">
+                 <div style={{height: `${h}%`}} className="bg-brand-cyan/20 rounded-t-xl group-hover:bg-brand-cyan group-hover:shadow-[0_0_20px_rgba(6,182,212,0.6)] transition-all duration-500"></div>
+                 <div className="absolute -top-8 left-1/2 -translate-x-1/2 text-[10px] font-black text-brand-cyan opacity-0 group-hover:opacity-100 transition-all duration-300 tracking-widest">{h}%</div>
                </div>
              ))}
           </div>
-          <div className="flex justify-between mt-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
-            <span>Guwahati</span>
-            <span>Jorhat</span>
-            <span>Silchar</span>
-            <span>Tinsukia</span>
+          <div className="flex justify-between mt-6 text-[9px] font-black text-slate-600 uppercase tracking-[0.3em] font-mono">
+            <span>GUW</span>
+            <span>JOR</span>
+            <span>SIL</span>
+            <span>TIN</span>
           </div>
         </div>
       </div>
