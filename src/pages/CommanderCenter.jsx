@@ -32,7 +32,7 @@ export default function CommanderCenter({ user }) {
   }
 
   return (
-    <div className="glass-panel text-white min-h-full p-4 sm:p-8 font-mono relative overflow-hidden rounded-[1.5rem] sm:rounded-[2rem] shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+    <div className="glass-panel text-white min-h-full p-8 font-mono relative overflow-hidden rounded-[2rem] shadow-[0_0_50px_rgba(0,0,0,0.5)]">
       {/* Terminal Backdrop Pattern */}
       <div className="absolute inset-0 opacity-5 pointer-events-none" style={{backgroundImage: 'repeating-linear-gradient(0deg, var(--color-brand-cyan) 0px, transparent 1px, transparent 3px)'}}></div>
       
@@ -52,17 +52,17 @@ export default function CommanderCenter({ user }) {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-4">
+        <div className="flex gap-4">
           <button 
             onClick={() => setLockdownOpen(true)}
-            className={`px-6 sm:px-8 py-3 rounded-xl border flex items-center justify-center gap-3 font-black text-[10px] tracking-[0.2em] transition-all active:scale-95 shadow-xl ${
+            className={`px-8 py-3 rounded-xl border flex items-center gap-3 font-black text-[10px] tracking-[0.2em] transition-all active:scale-95 shadow-xl ${
               isLocked ? 'bg-brand-danger text-white border-brand-danger shadow-[0_0_25px_rgba(239,68,68,0.4)]' : 'border-brand-danger/40 text-brand-danger hover:bg-brand-danger/10 backdrop-blur-md'
             }`}
           >
             <Power size={18} />
             {isLocked ? 'ABORT LOCKDOWN' : 'INITIATE LOCKDOWN'}
           </button>
-          <button className="px-6 sm:px-8 py-3 rounded-xl border border-white/10 bg-white/5 text-white hover:bg-white/10 font-black text-[10px] tracking-[0.2em] active:scale-95 transition-all backdrop-blur-md flex items-center justify-center">
+          <button className="px-8 py-3 rounded-xl border border-white/10 bg-white/5 text-white hover:bg-white/10 font-black text-[10px] tracking-[0.2em] active:scale-95 transition-all backdrop-blur-md">
             <Radio size={18} className="inline mr-3 text-brand-cyan" />
             MASS BROADCAST
           </button>
@@ -112,7 +112,7 @@ export default function CommanderCenter({ user }) {
               
               <div className="space-y-4">
                  {responders.map((r) => (
-                    <div key={r.id} className="flex flex-col sm:flex-row sm:items-center justify-between border border-white/5 p-4 rounded-xl hover:bg-white/5 transition-all cursor-pointer group hover:border-brand-cyan/30 gap-4">
+                    <div key={r.id} className="flex items-center justify-between border border-white/5 p-4 rounded-xl hover:bg-white/5 transition-all cursor-pointer group hover:border-brand-cyan/30">
                        <div className="flex items-center gap-5">
                           <div className="font-mono text-[10px] font-black text-brand-cyan bg-brand-cyan/10 px-2.5 py-1 rounded border border-brand-cyan/20">{r.id}</div>
                           <div>

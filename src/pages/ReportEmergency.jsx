@@ -65,24 +65,24 @@ export default function ReportEmergency({ onSuccess }) {
                 <h3 className="text-2xl font-black text-white uppercase tracking-wider" style={{ textShadow: '0 0 3px rgba(255, 255, 255, 0.3)' }}>What is the incident?</h3>
                 <p className="text-slate-500 mt-2 text-sm font-mono uppercase tracking-widest">Select the type of emergency you are witnessing.</p>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-4">
                 {incidentTypes.map((item) => (
-                   <button
+                  <button
                     key={item.id}
                     onClick={() => {
                       setFormData({ ...formData, type: item.id })
                       handleNext()
                     }}
-                    className={`flex flex-col items-center justify-center p-6 sm:p-10 rounded-[2rem] sm:rounded-[2.5rem] border transition-all active:scale-95 shadow-xl ${
+                    className={`flex flex-col items-center justify-center p-10 rounded-[2.5rem] border transition-all active:scale-95 shadow-xl ${
                       formData.type === item.id 
                         ? 'border-brand-accent bg-brand-accent/10' 
                         : 'border-white/5 bg-[#252a32] hover:border-white/20'
                     }`}
                   >
-                    <div className={`p-4 sm:p-6 rounded-[1.2rem] sm:rounded-[1.5rem] mb-4 sm:mb-5 border ${item.color.replace('bg-', 'bg-opacity-20 bg-').replace('text-', 'text-opacity-90 text-')}`} style={{ boxShadow: '0 0 10px rgba(255, 255, 255, 0.05)' }}>
-                      <item.icon size={32} className="sm:w-[40px] sm:h-[40px]" />
+                    <div className={`p-6 rounded-[1.5rem] mb-5 border ${item.color.replace('bg-', 'bg-opacity-20 bg-').replace('text-', 'text-opacity-90 text-')}`} style={{ boxShadow: '0 0 10px rgba(255, 255, 255, 0.05)' }}>
+                      <item.icon size={40} />
                     </div>
-                    <span className="font-black text-white text-sm sm:text-base uppercase tracking-widest">{item.label}</span>
+                    <span className="font-black text-white text-base uppercase tracking-widest">{item.label}</span>
                   </button>
                 ))}
               </div>
@@ -127,10 +127,9 @@ export default function ReportEmergency({ onSuccess }) {
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4 pt-6">
-                <button onClick={handleBack} className="p-5 bg-[#252a32] border border-white/10 rounded-2xl text-white hover:bg-white/5 active:scale-95 transition-all shadow-xl flex items-center justify-center">
+              <div className="flex gap-4 pt-6">
+                <button onClick={handleBack} className="p-5 bg-[#252a32] border border-white/10 rounded-2xl text-white hover:bg-white/5 active:scale-95 transition-all shadow-xl">
                   <ChevronLeft size={28} />
-                  <span className="sm:hidden ml-2 font-black uppercase tracking-widest text-xs">Back</span>
                 </button>
                 <button 
                   disabled={!formData.location}

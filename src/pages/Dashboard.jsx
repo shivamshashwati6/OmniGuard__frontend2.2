@@ -27,27 +27,31 @@ export default function Dashboard({ incidents, onUpdateStatus }) {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {stats.map((stat, i) => (
           <motion.div
             key={stat.label}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.1 }}
-            className="glass-panel p-5 sm:p-6 rounded-2xl group hover:border-brand-cyan/50 hover:bg-white/[0.08] transition-all duration-500"
+            className="glass-panel p-6 rounded-2xl group hover:border-brand-cyan/50 hover:bg-white/[0.08] transition-all duration-500"
           >
             <div className="flex items-start justify-between">
-              <div className={`p-3 sm:p-4 rounded-xl bg-white/5 border border-white/10 ${stat.color} group-hover:scale-110 transition-transform shadow-lg`}>
-                <stat.icon size={24} className="sm:w-[26px] sm:h-[26px]" />
+              <div className={`p-4 rounded-xl bg-white/5 border border-white/10 ${stat.color} group-hover:scale-110 transition-transform shadow-lg`}>
+                <stat.icon size={26} />
               </div>
-              <div className="flex items-center gap-1 text-[9px] sm:text-[10px] font-mono font-bold text-slate-500 uppercase tracking-tighter">
-                <TrendingUp size={10} sm:size={12} className="text-emerald-500" />
+              <div className="flex items-center gap-1 text-[10px] font-mono font-bold text-slate-500 uppercase tracking-tighter">
+                <TrendingUp size={12} className="text-emerald-500" />
                 {stat.trend}
               </div>
             </div>
-            <div className="mt-4 sm:mt-6">
-              <p className="text-[9px] sm:text-[10px] font-black text-slate-500 uppercase tracking-[0.3em]">{stat.label}</p>
-              <h3 className="text-3xl sm:text-4xl font-black text-white mt-1 font-mono tracking-tighter">{stat.value}</h3>
+            <div className="mt-6">
+              <p className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em]">{stat.label}</p>
+              <h3 className="text-4xl font-black text-white mt-1 font-mono tracking-tighter">{stat.value}</h3>
+            </div>
+            <div className="mt-6 flex items-center justify-between text-[10px] text-slate-600 font-mono">
+              <span>SCANNING_FREQ</span>
+              <span>2.4GHz</span>
             </div>
           </motion.div>
         ))}
@@ -102,24 +106,24 @@ export default function Dashboard({ incidents, onUpdateStatus }) {
                           </div>
                           <h4 className="text-base font-black text-white group-hover:text-brand-cyan transition-colors uppercase tracking-wider">{inc.type} - Alpha Sector</h4>
                           <p className="text-xs text-slate-400 mt-2 leading-relaxed font-mono">Incident detected at coordinates [{inc.lat.toFixed(4)}, {inc.lng.toFixed(4)}]. Immediate response sequence initiated.</p>
-                     <div className="flex flex-col xs:flex-row items-stretch xs:items-center gap-4 mt-8">
-                        {inc.status === 'detected' ? (
-                          <button 
-                            onClick={() => onUpdateStatus(inc.id, 'dispatched')}
-                            className="flex items-center justify-center gap-3 bg-brand-cyan text-slate-900 px-6 py-3.5 rounded-xl font-black text-[10px] uppercase tracking-[0.2em] transition-all shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:scale-105 active:scale-95"
-                          >
-                            <Truck size={16} /> Dispatch Sequence
-                          </button>
-                        ) : (
-                          <button 
-                            onClick={() => onUpdateStatus(inc.id, 'resolved')}
-                            className="flex items-center justify-center gap-3 bg-white/10 border border-white/20 hover:bg-white/20 px-6 py-3.5 rounded-xl text-white font-black text-[10px] uppercase tracking-[0.2em] transition-all backdrop-blur-md active:scale-95"
-                          >
-                            <CheckCircle2 size={16} className="text-brand-accent" /> Secure Perimeter
-                          </button>
-                        )}
-                        <button className="text-[10px] font-black text-slate-500 hover:text-white uppercase tracking-[0.2em] transition-all py-2 text-center">Telemetry Details</button>
-                      </div>
+                                                  <div className="flex items-center gap-6 mt-8">
+                             {inc.status === 'detected' ? (
+                               <button 
+                                 onClick={() => onUpdateStatus(inc.id, 'dispatched')}
+                                 className="flex items-center gap-3 bg-brand-cyan text-slate-900 px-6 py-2.5 rounded-xl font-black text-[10px] uppercase tracking-[0.2em] transition-all shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:scale-105 active:scale-95"
+                               >
+                                 <Truck size={16} /> Dispatch Sequence
+                               </button>
+                             ) : (
+                               <button 
+                                 onClick={() => onUpdateStatus(inc.id, 'resolved')}
+                                 className="flex items-center gap-3 bg-white/10 border border-white/20 hover:bg-white/20 px-6 py-2.5 rounded-xl text-white font-black text-[10px] uppercase tracking-[0.2em] transition-all backdrop-blur-md active:scale-95"
+                               >
+                                 <CheckCircle2 size={16} className="text-brand-accent" /> Secure Perimeter
+                               </button>
+                             )}
+                             <button className="text-[10px] font-black text-slate-500 hover:text-white uppercase tracking-[0.2em] transition-all">Telemetry Details</button>
+                          </div>
                       </div>
                    </div>
                  </motion.div>

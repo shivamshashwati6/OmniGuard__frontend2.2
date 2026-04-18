@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { LayoutDashboard, ShieldAlert, LogOut, Activity, Zap, MapPin, User, Terminal, ShieldCheck, X } from 'lucide-react'
+import { LayoutDashboard, ShieldAlert, LogOut, Activity, Zap, MapPin, User, Terminal, ShieldCheck } from 'lucide-react'
 import { clsx } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 import { motion } from 'framer-motion'
@@ -48,17 +48,9 @@ export default function Sidebar({ user, onLogout, isOpen, setIsOpen }) {
         isOpen ? "w-64 translate-x-0" : "w-64 -translate-x-full lg:translate-x-0 lg:w-20"
       )}>
         <div className={cn(
-          "p-6 flex flex-col items-center border-b border-white/5 transition-all duration-300 relative",
+          "p-6 flex flex-col items-center border-b border-white/5 transition-all duration-300",
           !isOpen && "lg:p-4 lg:items-center"
         )}>
-          {/* Mobile Close Button */}
-          <button 
-            onClick={() => setIsOpen(false)}
-            className="lg:hidden absolute right-4 top-4 p-2 text-slate-400 hover:text-white"
-          >
-            <X size={20} />
-          </button>
-
           <div className="relative mb-3">
             <div className="absolute inset-0 bg-emerald-500/10 blur-lg rounded-full" />
             <ShieldCheck className="w-8 h-8 text-emerald-500 relative z-10" />
